@@ -18,8 +18,32 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "outDir": "./dist",
+    "removeComments": true,
+    "rootDir": "./",
+
+    "types":["vite/client", "jest"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "vue.d.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+
+    "src/**/**/*.ts",
+    "src/**/**/*.d.ts",
+    "src/**/**/*.tsx",
+    "src/**/**/*.vue",
+
+    "src/components/testWeb/*.vue",
+    "src/views/testWeb/*.vue"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
