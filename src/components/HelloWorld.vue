@@ -1,14 +1,5 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-defineProps<{ msg: string }>()
-
-const count = ref(0)
-</script>
-
 <template>
   <h1>{{ msg }}</h1>
-
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
     <p>
@@ -31,8 +22,44 @@ const count = ref(0)
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
+<script setup lang="ts">
+  import { ref } from 'vue'
+  defineProps<{ msg: string }>()
+  const count = ref(0)
+
+  // function
+  function testHi(params: string) {
+    return params 
+  }
+  console.log(testHi('HELLO HI!!!'))
+
+  // boolean 
+  const createdByBoolean = Boolean('');
+  console.log('createdByBoolean', createdByBoolean)
+
+  // array
+  const fibonacci: number[] = [1, 1, 2, 3, 5];
+  console.log('fibonacci', fibonacci)
+  
+  interface interArray {
+    [index: number]: number
+  }
+  const fibonacci2: interArray = [1, 1, 2, 3, 5];
+  console.log('fibonacci2', fibonacci2)
+
+  const list: any[] = ['xcatliu', 25, { website: 'http://xcatliu.com' }];
+  console.log('list', list)
+
+  // sum 
+  function sum(n1:number, n2: number):number {
+    return n1 + n2
+  }
+  console.log('sum', sum(2, 3))
+
+</script>
+
 <style scoped>
-.read-the-docs {
-  color: #888;
-}
+  .read-the-docs {
+    color: #888;
+  }
 </style>
