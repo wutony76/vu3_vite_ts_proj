@@ -1,3 +1,9 @@
+<script setup lang="ts">
+  // import HelloWorld from '@/components/HelloWorld.vue'
+  import HelloWorld from '@/components/HelloWorld.vue' 
+
+</script>
+
 <template>
   <h1> HOME-PAGE </h1>
 
@@ -12,11 +18,6 @@
 
   <HelloWorld msg="Vite + Vue" />
 </template>
-
-<script setup lang="ts">
-  // import HelloWorld from '@/components/HelloWorld.vue'
-  import HelloWorld from '@/components/HelloWorld.vue' 
-</script>
 
 <style scoped>
   .logo {
