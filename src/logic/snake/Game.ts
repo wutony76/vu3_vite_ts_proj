@@ -8,8 +8,9 @@ export default class Game {
   food:Food
   control:Control
   direction:string|null = null
-  distance:number = 10
-  isLive: boolean 
+  distance = 10 // number
+  isLive: boolean
+  callback: any // 遊戲結束.callback
 
   constructor () {
     this.food = new Food()
@@ -31,6 +32,10 @@ export default class Game {
     this.snake.init(this.distance)
     this.control.init()
     this.run()
+  }
+
+  setCallback (cb: any) {
+    if (cb) this.callback = cb 
   }
 
   run () {
@@ -69,6 +74,8 @@ export default class Game {
     } catch(e:any) {
       console.log(e.message)
       this.isLive = false
+
+      if (this.callback) this.callback()
     }
     this.isLive && setTimeout(this.run.bind(this), 1000)
   }

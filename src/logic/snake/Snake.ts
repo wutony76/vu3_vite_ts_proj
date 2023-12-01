@@ -79,7 +79,4 @@ export default class Snake {
       bodyElement.style.top = fontBodyY + 'px' 
     }
   }
-
-
-
 }
