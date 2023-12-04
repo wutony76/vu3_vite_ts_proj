@@ -24,9 +24,14 @@
     <!-- CSS ACTIONS 測試  -->
     <h1 class="block"> ACTIONS-PAGE </h1>
     <main class="animation-test" >
+      <!-- 動畫測試 -->
       <div class="test-container-1">
         <div class="cub"></div>
       </div>
+
+      <h2 class="headline self headline--self001">self-test-001</h2> 
+      <h2 data-splitting class="headline self headline--self001">self-test-001</h2> 
+
     </main>
 
   </div>

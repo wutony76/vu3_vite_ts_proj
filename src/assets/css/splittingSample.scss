@@ -96,7 +96,6 @@ $colors: #f9ca24, #3498db, #ff7979, #1abc9c, #e74c3c, #f8c291;
       }
     }
   }
-
   .headline--flip {
     .char {
       --name: flip;
@@ -128,7 +127,6 @@ $colors: #f9ca24, #3498db, #ff7979, #1abc9c, #e74c3c, #f8c291;
       }
     }
   }
-
   .headline--float {
     .char {
       --name: float;
@@ -162,7 +160,6 @@ $colors: #f9ca24, #3498db, #ff7979, #1abc9c, #e74c3c, #f8c291;
       }
     }
   }
-
   .headline--jog {
     .char {
       --name: jog;
@@ -193,7 +190,6 @@ $colors: #f9ca24, #3498db, #ff7979, #1abc9c, #e74c3c, #f8c291;
       }
     }
   }
-
   .headline--jump {
     .char {
       --name: jump;
@@ -225,7 +221,6 @@ $colors: #f9ca24, #3498db, #ff7979, #1abc9c, #e74c3c, #f8c291;
       }
     }
   }
-
   .headline--twirl {
     .char {
       --name: twirl;
@@ -263,7 +258,7 @@ $colors: #f9ca24, #3498db, #ff7979, #1abc9c, #e74c3c, #f8c291;
   }
 }
 
-// 動畫測測試碼
+// 動畫測測試碼 -平移
 .animation-test {
   h1 {
     margin-bottom: 15px;
@@ -292,7 +287,6 @@ $colors: #f9ca24, #3498db, #ff7979, #1abc9c, #e74c3c, #f8c291;
     // animation-fill-mode 動畫播放前後模式，預設 none。 其他還有 forwards、backwards、both
     // animation-play-state 動畫播放或暫停狀態，預設 running。 其他還有 paused
   }
-
   @keyframes animation-test {
     from { left: 0; }
     to { left: 100px; }
@@ -310,15 +304,94 @@ $colors: #f9ca24, #3498db, #ff7979, #1abc9c, #e74c3c, #f8c291;
     // 85% {
     //   left: 120px;
     // }
-    95% {
+    90% {
       left: 120px;
       // transform: translateX(62vw);
+    }
+    95% {
+      left: 110px;
     }
     100% {
       background: #000;
       opacity: 1;
       // transform: translateX(60vw);
     }
+  }
+
+
+  .self {
+    // animation-name: animation-test; // 動畫名稱
+    // animation-duration: 0.8s; // 持續時間
+    // animation-timing-function: ease-in-out;
+    // animation-fill-mode: forwards;
+
+    letter-spacing: 10px;
+    color:#ffffff75;
+    overflow: unset;
+
+    .word,
+    .char {
+      border: 1px solid #0000ff;
+  
+      animation-delay: var(--del);
+      animation-direction: var(--dir, normal);
+      animation-duration: var(--dur);
+      animation-iteration-count: var(--it, infinite);
+      animation-name: var(--name);
+      animation-timing-function: var(--tf);
+      animation-fill-mode: var(--fill, forwards);
+
+      display: inline-block;
+      position: relative;
+      transform-origin: 50% 100%;
+      z-index: 1;
+    }
+  }
+  .headline--self001 {
+    .char {
+        --name: self001;
+        --dur: 800ms;
+        --del: calc(var(--char-index) * 0.075s);
+        --it: 1;
+        --tf: cubic-bezier(0.165, 0.44, 0.64, 1);
+      }
+    
+      @keyframes self001 {
+        0% {
+          right:  0px;
+        }
+        20% {
+          transform: translateY(2%) scaleY(0.9);
+        }
+    
+        40% {
+          transform: translateY(-100%) scaleY(1.2);
+        }
+    
+        50% {
+          transform: translateY(10%) scaleY(0.8);
+        }
+    
+        70% {
+          transform: translateY(-5%) scaleY(1);
+        }
+
+        90% {
+          right: 280px;
+        }
+    
+        80%,
+        100% {
+          transform: translateY(0) scaleY(1);
+          opacity: 1;
+          right: 260px;
+          color:#ffffff;
+          // letter-spacing: 1px;
+        }
+
+
+      }
+
   }
 }
 
