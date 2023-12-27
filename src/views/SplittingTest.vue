@@ -9,10 +9,35 @@
 </script>
 
 <template>
-  <div style="
-    height: calc(100vh - 80px);
-    overflow: auto;
-  ">
+  <div style="height: 100vh; overflow: auto;">
+    <div style="height:50px;"></div>
+
+    <div class="btn-sample">
+      <div class="btn">Neon</div>
+      <!-- <div class="btn">Neon</div>
+      <div class="btn btn1">Neon</div>
+      <div class="btn btn2">Neon</div>
+      <div class="btn btn3">Neon</div> -->
+    </div>
+
+    <div class="css3d-sample">
+      <div class="camera">
+        <div class="space">
+          <div class="box">
+            RELOAD
+          </div>
+        </div>
+      </div>
+
+      <div class="camera2">
+        <div class="space2">
+          <div class="box2">
+            RELOAD2
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="splitting-sample">
       <!-- SPLITTING 範例  -->
       <h1> SPLITTING-PAGE </h1>
@@ -44,5 +69,7 @@
 </template>
 
 <style lang="scss">
-  // @import "../assets/css/splittingSample.scss"
+  @import "../assets/css/buttonSample.scss";
+  @import "../assets/css/css3dSample.scss";
+  @import "../assets/css/splittingSample.scss";
 </style>

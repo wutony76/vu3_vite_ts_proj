@@ -16,11 +16,13 @@ $colors: #f9ca24, #3498db, #ff7979, #1abc9c, #e74c3c, #f8c291;
   .container {
     // max-height: 100vh;
     // overflow-y: scroll;
+    margin: 0 auto;
     position: relative;
     scroll-snap-type: y mandatory;
     -webkit-overflow-scrolling: touch;
   }
   .headline {
+    margin: 0 auto;
     border: 1px solid #ff0000;
 
     align-items: center;

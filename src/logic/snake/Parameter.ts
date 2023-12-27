@@ -12,6 +12,7 @@ export const EVENTS = {
 
 // 遊戲狀態
 export const GAMESTATUS = {
+  NONE: 'none',
   WAITING: 'waiting',
   READY: 'ready',
   START: 'start',

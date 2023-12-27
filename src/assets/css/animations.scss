@@ -78,13 +78,13 @@
   // 跳動文字 
   .headline--self001 {
     .char {
-      --name: self001;
+      --name: anim001;
       --dur: 800ms;
       --del: calc(var(--char-index) * 0.075s);
       --it: 1;
       --tf: cubic-bezier(0.165, 0.44, 0.64, 1);
     }
-    @keyframes self001 {
+    @keyframes anim001 {
       0% {
         right: 0px;
         opacity: 0.5;
@@ -123,42 +123,29 @@
     }
   }
 
-  // 按鈕淡出
+  // 淡入
   .button--alpha {
     opacity: 0;
-    animation-name: alpha; // 動畫名稱
+    animation-name: alpha_in; // 動畫名稱
     animation-duration: 3s; // 持續時間
     animation-fill-mode: forwards;
-    @keyframes alpha {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
   }
-
+  // 淡出
+  .page--alphaOut {
+    opacity: 1;
+    animation-name: alpha_out; // 動畫名稱
+    animation-duration: 1s; // 持續時間
+    animation-fill-mode: forwards;
+  }
+  // 旋轉
+  .button-rotate {
+    animation-name: settingsBtn; // 動畫名稱
+    animation-duration: 1s; // 持續時間
+    animation-fill-mode: forwards;
+    // animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+  }
   // 按鈕扭動
-  // .button--twist {
-  //   opacity: 0;
-  //   animation-name: twist; // 動畫名稱
-  //   animation-duration: 0.8s; // 持續時間
-  //   animation-fill-mode: forwards;
-
-  //   @keyframes twist {
-  //     0% {
-  //       transform: translateY(-100%) scaleX(0.3);
-  //     }
-  //     50% {
-
-  //     }
-  //     100% {
-  //       transform: translateY(-100%) scaleX(1);
-  //     }
-  //   }
-  // }
-
   .button--twirl {
     .word {
       // border: 1px solid #00ff00;
@@ -195,6 +182,87 @@
       100% {
         transform: rotateY(6turn);
       }
+    }
+  }
+
+
+  @keyframes rightBtn01 {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(0.95);
+    }
+    80% {
+      transform: translateX(40px) rotateY(70deg) scale(1.2) scaleY(.5);
+    }
+    100% {
+      transform: translateX(40px) rotateY(70deg) scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes leftBtn01 {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(0.95);
+    }
+    80% {
+      transform: translateX(-40px) rotateY(-70deg) scale(1.2) scaleY(.5);
+    }
+    100% {
+      transform: translateX(-40px) rotateY(-70deg) scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes settingsBtn{
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  // 淡入
+  @keyframes alpha_in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  // 淡出
+  @keyframes alpha_out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  // 彈窗效果
+  @keyframes intro_box {
+    0% {
+      opacity: 0;
+      transform: scale(0)
+    }
+
+    20% {
+      transform: scale(1.2)
+    }
+
+    40% {
+      transform: scale(0.89)
+    }
+
+    60% {
+      transform: scale(1.04)
+    }
+
+    80% {
+      transform: scale(0.98)
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1)
     }
   }
 

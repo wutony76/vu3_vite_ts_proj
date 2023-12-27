@@ -3,8 +3,12 @@
 </script>
 
 <template>
+  <div style="height:50px;"></div>
   <h1> HOME-PAGE </h1>
-  <div>
+  <div style="
+    display: flex;
+    justify-content: center;
+  ">
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
