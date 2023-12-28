@@ -185,6 +185,10 @@
     }
   }
 
+  .animation-intro {
+    animation: intro_box 1s 1s forwards;
+  }
+
 
   @keyframes rightBtn01 {
     0% {

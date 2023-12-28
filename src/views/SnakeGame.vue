@@ -6,6 +6,7 @@
   import { ACTIONS, VIEWS } from '@/logic/util/Parameter'
   import { useRouter } from 'vue-router'
   import Tools from '@/logic/util/Tools'
+  import ProgressBar from '@/components/Ui/ProgressBar.vue'
 
   defineOptions({
     name: "SnakeGame",
@@ -66,7 +67,7 @@
   const clickListener = (actions:string) => {
     switch (actions) {
       case ACTIONS.RELOAD:
-        window.location.reload();
+        window.location.reload()
         break
       case ACTIONS.BACK:
       case ACTIONS.INDEX:
@@ -79,10 +80,26 @@
 
       case ACTIONS.SETTINGS:
         animationStatus('settingsBtn', 'button-rotate', 100)
-        changeViewStatus (state.viewStatus)
-        state.viewStatus = VIEWS.SETTINGS
-        animationStatus('settingsPageMain', 'page--show', 1300)
-        animationStatus('settingsAnim01', 'headline--self001', 2000)
+        animationRemoveClass('settingsAnim1', 'animation-intro')
+        animationRemoveClass('settingsAnim2', 'animation-intro')
+        animationRemoveClass('settingsAnim3', 'animation-intro')
+        animationRemoveClass('saveBtn', 'animation-intro')
+        animationRemoveClass('settingsAnim01', 'headline--self001')
+        animationRemoveClass('settingsAnim02', 'headline--self001')
+
+        setTimeout(() => {
+          changeViewStatus (state.viewStatus)
+          state.viewStatus = VIEWS.SETTINGS
+
+          animationStatus('settingsAnim1', 'animation-intro', 1300+1000)
+          animationStatus('settingsAnim2', 'animation-intro', 1300+1300)
+          animationStatus('settingsAnim3', 'animation-intro', 1300+1500)
+          animationStatus('saveBtn', 'animation-intro', 1300+2000)
+
+          animationStatus('settingsPageMain', 'page--show', 1300)
+          animationStatus('settingsAnim01', 'headline--self001', 2000)
+          animationStatus('settingsAnim02', 'headline--self001', 1400)
+        })
         break
       case ACTIONS.DETAILS:
         changeViewStatus (state.viewStatus)
@@ -124,6 +141,9 @@
           animationStatus('rankingPageMain', 'page--show', 1300)
           animationStatus('rankingAnim01', 'headline--self001', 2000)
         }, 100);
+        break
+      case ACTIONS.SAVE:
+        window.location.reload()
         break
 
       case ACTIONS.SAMPLE:
@@ -399,26 +419,36 @@
         <div class="header special-box">
           <!-- 標題1 -->
           <div class="title-block">
-            <div id="settingsAnim01" class="
-            title
-            headline self
-          "
+            <div id="settingsAnim01" class="title headline self"
             data-splitting> SETTINGS </div>
           </div>
           <!-- 標題2 -->
           <div class = "title-second-block">
-            <div id="anim02" class="
-            title2
-            headline self headline--self001
-          " data-splitting> BASIC GAME SETTINGS. </div>
+            <div id="settingsAnim02" class="title2 headline self" data-splitting> BASIC GAME SETTINGS. </div>
           </div>
         </div>
+        <div class="main-block">
+          <div id="settingsAnim1" class="settings-block">
+            <div class="title"> BGM </div>
+            <div class="content"> <ProgressBar ></ProgressBar> </div>
+          </div>
+          <div id="settingsAnim2" class="settings-block">
+            <div class="title"> SE </div>
+            <div class="content"> <ProgressBar ></ProgressBar> </div>
+          </div>
+          <div id="settingsAnim3" class="settings-block">
+            <div class="title"> VOICE </div>
+            <div class="content"> <ProgressBar ></ProgressBar> </div>
+          </div>
+
+        </div>
         <!-- BUTTON -->
-        <div class="button-bar">
-          <button id="startBtn"
-            @click="clickListener(ACTIONS.START)">START</button>
+        <div class="button-block">
+          <button id="saveBtn" class="button-save"
+            @click="clickListener(ACTIONS.SAVE)">SAVE</button>
         </div>
       </div>
+
       <!-- MAIN (details-page) -->
       <div id="detailsPageMain" class="main detailsPage page--hide">
         <!-- SETTINGS -->

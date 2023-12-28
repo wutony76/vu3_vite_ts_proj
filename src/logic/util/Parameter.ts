@@ -8,6 +8,7 @@ export const ACTIONS = {
   DETAILS: 'btn_details',
   CONTROLS: 'btn_controls',
   RANKING: 'btn_ranking',
+  SAVE: 'btn_save',
   RELOAD: 'page_reload',
   START: 'game_start',
 }
@@ -17,4 +18,8 @@ export const VIEWS = {
   DETAILS: 'view_details',
   CONTROLS: 'view_controls',
   RANKING: 'view_ranking',
+}
+export const UI = {
+  CLICKLEFT: 'click-left',
+  CLICKRIGHT: 'click-right',
 }
