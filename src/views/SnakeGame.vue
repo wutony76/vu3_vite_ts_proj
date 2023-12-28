@@ -5,17 +5,12 @@
   import { GAMESTATUS } from '@/logic/snake/Parameter'
   import { ACTIONS, VIEWS } from '@/logic/util/Parameter'
   import { useRouter } from 'vue-router'
+  import Tools from '@/logic/util/Tools'
 
-  // import RankItem from '@/components/Rank/RankItem.vue'
-
-  // import GameControl from '@/logic/test/GameControl'
-  // const gameControl = new GameControl();
-  // let gameStatus = GAMESTATUS.WAITING
   defineOptions({
     name: "SnakeGame",
     inheritAttrs: false,
   })
-
   const router = useRouter()
   const state = reactive({
     game: null,
@@ -25,21 +20,22 @@
     viewResultVisible: false,
     data: {
       ranking: [
-        {rank: '1', name: 'TONY.WU', score: '9999999'},
-        {rank: '2', name: 'HAPPY.RED', score: '6241134'},
-        {rank: '3', name: 'HAPPFAT', score: '3133913'},
-        {rank: '4', name: 'ABIGAIL', score: '3012213'},
-        {rank: '5', name: 'TTTM.WC', score: '2911424'},
-        {rank: '6', name: 'TNYAUU', score: '2021681'},
-        {rank: '7', name: 'TOYO.AC', score: '1722022'},
-        {rank: '8', name: 'SISI.CC', score: '139290'},
-        {rank: '9', name: 'GOYES', score: '798021'},
+        {rank: '1', name: 'TONY.WU', score: 11924999},
+        {rank: '2', name: 'HAPPY.RED', score: 9241134},
+        {rank: '3', name: 'HAPPFAT', score: 5133913},
+        {rank: '4', name: 'ABIGAIL', score: 3012213},
+        {rank: '5', name: 'TTTM.WC', score: 2911424},
+        {rank: '6', name: 'TNYAUU', score: 1021681},
+        {rank: '7', name: 'TOYO.AC', score: 1002022},
+        {rank: '8', name: 'SISI.CC', score: 439290},
+        {rank: '9', name: 'GOYES', score: 198021}
       ]
     }
   })
-  const getRandom = (min:number, max:number) => {
-    return Math.floor(Math.random() * max) + min
-  }
+
+  // const getRandom = (min:number, max:number) => {
+  //   return Math.floor(Math.random() * max) + min
+  // }
   const prdControlCssClass = () => {
     const arr = []
     for (let i = 0; i < 9; i ++) {
@@ -51,6 +47,20 @@
   }
   const cssClassArr = prdControlCssClass()
   const colorArr = ['colorff3535', 'colorff8c00', 'colorffff00', 'color00ff00', 'color00bfff', 'colorc989ff', 'colorFF26FF', 'color000085', 'color200137']
+  const jumpReturnNum = (element:string, targetNum:number, timeout:number) => {
+    var currNum = 0;
+    const deltaTime = Math.round(timeout / 50)
+    const deltaNum = Math.round(targetNum / deltaTime)
+    var interval = setInterval(function () {
+      // currNum++;
+      currNum += Tools.getRandom(0, deltaNum)
+      if (currNum > targetNum) currNum = targetNum
+      const node = document.querySelector('#' + element) 
+      // if (node) node.innerHTML = currNum + ''
+      if (node) node.innerHTML = Tools.formatSorce(currNum)
+      if (currNum === targetNum || !node) clearInterval(interval)
+    }, 10);
+  }
 
   // CLICKLISTENER.事件
   const clickListener = (actions:string) => {
@@ -99,12 +109,15 @@
         break
       case ACTIONS.RANKING:
         cssClassArr.forEach((styleAnimName) => {
-          console.log('style = ', styleAnimName)
           animationRemoveClass(styleAnimName, 'headline--self001')
         })
+
         setTimeout(() => {
+          state.data.ranking.forEach((item, index:number) => {
+            jumpReturnNum('rankScoreAnim' + index, item.score, Tools.getRandom(5000, 10000))
+          }) 
           cssClassArr.forEach((styleAnimName) => {
-            animationStatus(styleAnimName, 'headline--self001', getRandom(1300, 2500))
+            animationStatus(styleAnimName, 'headline--self001', Tools.getRandom(1300, 2500))
           })
           changeViewStatus (state.viewStatus)
           state.viewStatus = VIEWS.RANKING
@@ -477,7 +490,7 @@
               <div :id="'rankNameAnim' + index" class="name
                 headline self
                 " data-splitting> {{ item.name }} </div>
-              <div class="score"> {{ item.score }} </div>
+              <div :id="'rankScoreAnim' + index" class="score"> {{ item.score }} </div>
             </div>
           </div>
         </div>

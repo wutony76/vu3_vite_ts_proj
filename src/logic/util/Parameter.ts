@@ -11,7 +11,6 @@ export const ACTIONS = {
   RELOAD: 'page_reload',
   START: 'game_start',
 }
-
 export const VIEWS = {
   WAIT: 'view_wait',
   SETTINGS: 'view_settings',
