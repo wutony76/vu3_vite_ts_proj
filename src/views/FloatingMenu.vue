@@ -270,5 +270,5 @@
 </template>
 
 <style lang="scss">
-  // @import "../assets/css/floatingMenuSample.scss";
+  @import "../assets/css/floatingMenuSample.scss";
 </style>

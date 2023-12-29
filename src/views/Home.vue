@@ -1,9 +1,16 @@
 <script setup lang="ts">
   import HelloWorld from '@/components/HelloWorld.vue'
+  import Nvbar from '@/components/Ui/NvbarList.vue'
+  // setTimeout(() => {
+  //   window.location.reload()
+  // })
 </script>
 
 <template>
+  <div style="height:30px;"></div>
+  <Nvbar></Nvbar>
   <div style="height:50px;"></div>
+
   <h1> HOME-PAGE </h1>
   <div style="
     display: flex;

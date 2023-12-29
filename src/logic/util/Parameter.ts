@@ -11,6 +11,8 @@ export const ACTIONS = {
   SAVE: 'btn_save',
   RELOAD: 'page_reload',
   START: 'game_start',
+  REPLAY: 'game_replay',
+  EXIT: 'game_exit',
 }
 export const VIEWS = {
   WAIT: 'view_wait',

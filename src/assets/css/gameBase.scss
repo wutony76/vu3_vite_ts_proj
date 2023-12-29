@@ -541,7 +541,6 @@ body {
         }
       }
     }
-
     .main.rankingPage {
       .title-second-block {
         width:650px;
@@ -610,7 +609,6 @@ body {
         }
       }
     }
-
   }
   // RESULT狀態
   .all-mask.result-status {
@@ -630,6 +628,22 @@ body {
         //   border: 1px solid #00ff00;
         //   border-color: #00ff00;
         // }
+      }
+    }
+  }
+  // READY狀態
+  .all-mask.ready-status {
+    // background: unset;
+    .special-box {
+      position: relative;
+
+      .number {
+        width: 100%;
+        position: absolute;
+        color:#00ff00;
+        font-size: 150px;
+        font-weight: bold;
+        opacity: 0;
       }
     }
   }

@@ -42,8 +42,9 @@ $menu_height: 20px;
 $menu_color: transparent;
 $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
 
-/* Placeholders */
+$zoom-scale: 0.8;
 
+/* Placeholders */
 %center {
   left: 0;
   right: 0;
@@ -52,14 +53,12 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
   margin: auto;
   transform: translateY(-50%);
 }
-
 %decal {
   position: absolute;
   width: $core_width;
   height: $core_width;
   left: 50%;
 }
-
 %fade_loop {
   @for $i from 1 through 36 {
     &:nth-of-type(#{$i}) {
@@ -67,7 +66,6 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
     }
   }
 }
-
 %fade_loop_alt {
   @for $i from 1 through 36 {
     &:nth-of-type(#{$i}) {
@@ -75,7 +73,6 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
     }
   }
 }
-
 %circ_loop {
   position: absolute;
 
@@ -86,7 +83,6 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
     }
   }
 }
-
 %circ_loop_quart {
   position: absolute;
 
@@ -97,7 +93,6 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
     }
   }
 }
-
 %circ_loop_quart_alt {
   position: absolute;
 
@@ -113,20 +108,19 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
 .intro {}
 
 // body {
-// .floatingMenu {
-.float-menu {
-  height: 50vh;
-  opacity: 0;
-  animation: intro_box 1s 1s forwards;
-  // overflow: hidden;
-
-  // perspective-origin: 50% -10%;
-  // margin: 0;
-  // padding: 0;
-  // font-family: montserrat;
-  // perspective: 800;
+.floatingMenu {
+// .float-menu {
+  height: 100vh;
+  perspective-origin: 50% -10%;
+  margin: 0;
+  padding: 0;
+  font-family: montserrat;
+  perspective: 800px;
   // background: radial-gradient(ellipse at top left, rgba(222, 11, 70, 0.26) -160%, rgba(9, 9, 9, 0) 103%), -webkit-radial-gradient(center, ellipse cover, #0C1019 0%, #0B0B0E 100%);
   // overflow: hidden;
+
+  opacity: 0;
+  animation: intro_box 1s 1s forwards;
 
   .grain {
     transform: scale(1) !important;
@@ -349,7 +343,6 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
     transform: rotate(360deg)
   }
 }
-
 @keyframes fade {
   0% {
     opacity: 0;
@@ -363,7 +356,6 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
     opacity: 0;
   }
 }
-
 @keyframes blink {
   0% {
     opacity: 1
@@ -385,7 +377,6 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
     opacity: 1
   }
 }
-
 @keyframes in {
   0% {
     opacity: 0
@@ -395,7 +386,6 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
     opacity: 1
   }
 }
-
 @keyframes inalt {
   0% {
     opacity: 0
@@ -409,29 +399,27 @@ $menu_glow: 0px 0px 25px rgba(222, 11, 70, 0.27);
     opacity: 0
   }
 }
-
 @keyframes wiggle {
   0% {
-    transform: translateY(0) translateZ(-840px) rotateX(64deg) rotateY(-21deg) rotatez(80deg) scale(0.5);
+    transform: translateY(0) translateZ(-840px) rotateX(64deg) rotateY(-21deg) rotatez(80deg) scale($zoom-scale);
   }
 
   25% {
-    transform: translateY(0) translateZ(-820px) rotateX(66deg) rotateY(-24deg) rotatez(84deg) scale(0.5);
+    transform: translateY(0) translateZ(-820px) rotateX(66deg) rotateY(-24deg) rotatez(84deg) scale($zoom-scale);
   }
 
   50% {
-    transform: translateY(0) translateZ(-840px) rotateX(62deg) rotateY(-23deg) rotatez(82deg) scale(0.5);
+    transform: translateY(0) translateZ(-840px) rotateX(62deg) rotateY(-23deg) rotatez(82deg) scale($zoom-scale);
   }
 
   75% {
-    transform: translateY(0) translateZ(-840px) rotateX(63deg) rotateY(-19deg) rotatez(78deg) scale(0.5);
+    transform: translateY(0) translateZ(-840px) rotateX(63deg) rotateY(-19deg) rotatez(78deg) scale($zoom-scale);
   }
 
   100% {
-    transform: translateY(0) translateZ(-840px) rotateX(64deg) rotateY(-21deg) rotatez(80deg) scale(0.5);
+    transform: translateY(0) translateZ(-840px) rotateX(64deg) rotateY(-21deg) rotatez(80deg) scale($zoom-scale);
   }
 }
-
 // @keyframes intro_box {
 //   0% {
 //     opacity: 0;

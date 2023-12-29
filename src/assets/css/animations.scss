@@ -188,6 +188,18 @@
   .animation-intro {
     animation: intro_box 1s 1s forwards;
   }
+  .animation-move-left {
+    animation: move_left;
+    animation-duration: 0.3s; // 持續時間
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+  }
+  .animation-zoom-in {
+    animation: scale_zoom_in;
+    animation-duration: 2s; // 持續時間
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+  }
 
 
   @keyframes rightBtn01 {
@@ -247,27 +259,41 @@
       opacity: 0;
       transform: scale(0)
     }
-
     20% {
       transform: scale(1.2)
     }
-
     40% {
       transform: scale(0.89)
     }
-
     60% {
       transform: scale(1.04)
     }
-
     80% {
       transform: scale(0.98)
     }
-
     100% {
       opacity: 1;
       transform: scale(1)
     }
   }
-
+  // 左邊移動 
+  @keyframes move_left {
+    100% {
+      transform: translateX(1000px);
+    }
+  }
+  // 放大
+  @keyframes scale_zoom_in{
+    30%{
+      opacity: 1;
+    }
+    60%{
+      opacity: 1;
+      transform: scale(1);
+    }
+    100%{
+      opacity: 0;
+      transform: scale(100);
+    }
+  }
 }
