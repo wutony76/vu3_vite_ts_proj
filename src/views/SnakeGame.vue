@@ -181,15 +181,13 @@
       // 遊戲準備中倒數3秒
       case GAMESTATUS.READY:
         state.viewReadyVisible = true 
-        // state.viewStatus = VIEWS.WAIT
-
         animationStatus('numberAnim1', 'animation-zoom-in', 10)
         animationStatus('numberAnim2', 'animation-zoom-in', 1510)
         animationStatus('numberAnim3', 'animation-zoom-in', 3010)
-        // animationStatus('readyPage', 'alpha_out', 4500)
         setTimeout(() => {
-          state.gameStatus = GAMESTATUS.START
-          changeGameStatus( state.gameStatus )
+          state.viewReadyVisible = false 
+          // state.gameStatus = GAMESTATUS.START
+          // changeGameStatus( state.gameStatus )
         }, 4500)
         break
       // 遊戲開始
@@ -575,10 +573,11 @@
           <div class="gameHeader"></div>
           <div class="title-block">
             <h1> SNAKE </h1>
-            <h1 class="t2"> SNAKE </h1>
           </div>
           <!--创建游戏的主容器  -->
           <div id="main">
+            <div class="mainBackground"></div>
+
             <!-- 设置游戏的舞台 -->
             <div id="stage">
 
