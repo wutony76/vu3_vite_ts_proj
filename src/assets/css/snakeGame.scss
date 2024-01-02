@@ -94,20 +94,82 @@
       margin: 0 auto;
       .gameHeader {
         height: 85px;
+
+        .left-block {
+          // position: relative;
+          // top: 140px;
+          // left: -270px;
+          // width: 300px;
+
+          // text-align: right;
+          // margin-bottom: 15px;
+
+          // display: flex;
+          // flex-direction: column;
+
+          // perspective-origin: 50% 100%;
+          // perspective: 255px;
+
+
+          position: relative;
+          transform: scale(1);
+          top: 140px;
+          left: -150px;
+          width: 340px;
+          text-align: right;
+          margin-bottom: 15px;
+          display: flex;
+          flex-direction: column;
+          perspective-origin: 80% 130%;
+          perspective: 500px;
+
+          .btn-item {
+            position: relative;
+            right: 0px;
+            opacity: 0;
+
+            // margin-bottom: 15px;
+            margin-bottom: 5px;
+            text-align: left;
+          }
+
+          .button {
+            border: 1px solid #00ff0035;
+            border-radius: 3px;
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: -3px;
+            padding: 7px 15px;
+            color: #00ff00;
+            display: inline-block;
+            cursor: pointer;
+
+            .space {
+              margin-left: 7px;
+            }
+
+            &:hover {
+              border: 1px solid #00ff00;
+              animation: anim_intro 1s 0.7s forwards infinite;
+            }
+          }
+        }
+
       }
       .title-block {
         position: relative;
         h1 {
           // color: #001800;
           // font-weight: bold;
-          padding-right: 130px;
+          padding-right: 200px;
           color: #00ff00;
-          font-weight: 700;
-          letter-spacing: 4px;
+          font-weight: 800;
+          letter-spacing: -6px;
         }
       }
 
       #main {
+        height: 380px;
         margin-top: -10px;
         // border-color: #001800;
         // border-image-source: linear-gradient(to right, #8f41e9, #578aef);
@@ -120,24 +182,77 @@
         background-image: linear-gradient(to right, #222, #222), linear-gradient(180deg, #00ff00, #ff0000);
         // background-image: linear-gradient(to right, #222, #222), linear-gradient(180deg, #8F41E9, #578AEF);
 
+        // &::before {
+        //   position: absolute;
+        //   top: 0;
+        //   right: 0;
+        //   bottom: 0;
+        //   left: 0;
+        
+        //   width: 200%;
+        //   height: 100px;
+        // }
+        position: relative;
+        overflow: hidden;
+
+
         .mainBackground {
           position: absolute;
           width: 340px;
-          height: 400px;
+          height: 360px;
           border-radius: 10px;
           background: #b7d4a8;
         }
         #stage {
           border-color: #001800;
+          top: 10px;
         }
         #score-panel {
-          z-index: 9;
           position: relative;
+          width: 305px;
           bottom: unset;
-          top: unset;
+          top: 10px;
+          z-index: 9;
+
+          .block {
+            margin-top: unset;
+            font-size: 20px;
+            letter-spacing: -2.2px;
+
+            .semicolon {
+              margin-left: 2px;
+              margin-right: 5px;
+              position: relative;
+              top: -2px;
+            }
+          }
         }
 
+        .scan {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+
+          width: 200%;
+          height: 100px;
+
+          /* linear-gradient() make a light */
+          background-image: linear-gradient(to bottom,
+              rgba(255, 255, 255, 0),
+              rgb(244 255 241 / 13%),
+              rgba(255, 255, 255, 0));
+
+          /* rotate light */
+          transform-origin: center center;
+          transform: translate(-28%, 50%) rotate(-45deg);
+
+          /* keyframes animation */
+          // animation: ScanLights 3s linear 1s infinite;
+        }
       }
+
 
     }
   }

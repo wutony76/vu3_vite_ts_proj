@@ -23,7 +23,7 @@
   else state.value = props.value
 
   const clickListener = (actions) => {
-    console.log('click', actions)
+    console.log('UI.CLICK', actions)
     switch(actions) {
       case UI.CLICKLEFT:
         state.value -= 10

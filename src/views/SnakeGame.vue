@@ -66,7 +66,23 @@
 
   // CLICKLISTENER.事件
   const clickListener = (actions:string) => {
+    console.log('ttt.CLICK', actions)
     switch (actions) {
+      case ACTIONS.GAMEREPLAY:
+        if (state.gameStatus === GAMESTATUS.START) {
+          state.game.updateStatus(GAMESTATUS.STOP)
+          console.log('click.game', state.game)
+
+          // setTimeout(() => {
+          //   state.gameStatus = GAMESTATUS.READY
+          //   changeGameStatus(state.gameStatus)
+          // }, 1000)
+        }
+        break
+      case ACTIONS.GAMERESULT:
+        break
+
+      case ACTIONS.GAMEBACK:
       case ACTIONS.RELOAD:
       case ACTIONS.REPLAY:
         window.location.reload()
@@ -180,29 +196,46 @@
         break
       // 遊戲準備中倒數3秒
       case GAMESTATUS.READY:
-        state.viewReadyVisible = true 
-        animationStatus('numberAnim1', 'animation-zoom-in', 10)
-        animationStatus('numberAnim2', 'animation-zoom-in', 1510)
-        animationStatus('numberAnim3', 'animation-zoom-in', 3010)
+        animationRemoveClass('scanLight', 'animation-scan-lights')
+        setTimeout(() => {
+          state.viewReadyVisible = true 
+          animationStatus('numberAnim1', 'animation-zoom-in', 10)
+          animationStatus('numberAnim2', 'animation-zoom-in', 1510)
+          animationStatus('numberAnim3', 'animation-zoom-in', 3010)
+          animationStatus('scanLight', 'animation-scan-lights', 4500)
+        }, 10)
         setTimeout(() => {
           state.viewReadyVisible = false 
-          // state.gameStatus = GAMESTATUS.START
-          // changeGameStatus( state.gameStatus )
+          state.gameStatus = GAMESTATUS.START
+          changeGameStatus( state.gameStatus )
         }, 4500)
         break
       // 遊戲開始
       case GAMESTATUS.START:
         state.viewReadyVisible = false 
-        new Game().setCallback(() => {
-          // 設定.RESULT STATUS
-          state.gameStatus = GAMESTATUS.RESULT
-          setTimeout(() => {
-            changeGameStatus( state.gameStatus )
-          }, 1000)
-        })
+        animationRemoveClass('numberAnim1', 'animation-zoom-in')
+        animationRemoveClass('numberAnim2', 'animation-zoom-in')
+        animationRemoveClass('numberAnim3', 'animation-zoom-in')
+
+        animationStatus('gameTitleAnim', 'headline--self001', 10)
+        animationStatus('gameAnim1', 'animation-left-btn-move', 110)
+        animationStatus('gameAnim2', 'animation-left-btn-move', 310)
+        animationStatus('gameAnim3', 'animation-left-btn-move', 510)
+
+        // animationStatus('gameAnim1', 'animation-right', 600)
+        // animationStatus('gameAnim2', 'animation-right', 600)
+        // animationStatus('gameAnim3', 'animation-right', 600)
+        // state.game = new Game().setCallback(() => {
+        //   // 設定.RESULT STATUS
+        //   state.gameStatus = GAMESTATUS.RESULT
+        //   setTimeout(() => {
+        //     changeGameStatus( state.gameStatus )
+        //   }, 1000)
+        // })
         break
       // 遊戲結果
       case GAMESTATUS.RESULT:
+        animationRemoveClass('scanLight', 'animation-scan-lights')
         state.viewResultVisible = true
         animationStatus('rePlayBtn', 'button--alpha', 3000)
         animationStatus('exitGameBtn', 'button--alpha', 3000)
@@ -212,23 +245,22 @@
 
   // ANIMATIONS CLASS.處理邏輯
   const animationStatus = (animStatus:string, className:string, timeOut:number) => {
-
     setTimeout(() => {
-    const nd = document.getElementById(animStatus)
-    switch (className) {
-      // case 'headline--self001':
-      //   if (nd !== null) nd.classList.remove('headline--self001')
-      //   break
-      case 'page--show':
-        if (nd !== null) nd.classList.remove('page--hide')
-        break
-      case 'page--hide':
-        if (nd !== null) {
-          nd.classList.remove('page--alphaOut')
-          nd.classList.remove('page--show')
-        }
-        break
-    }
+      const nd = document.getElementById(animStatus)
+      switch (className) {
+        // case 'headline--self001':
+        //   if (nd !== null) nd.classList.remove('headline--self001')
+        //   break
+        case 'page--show':
+          if (nd !== null) nd.classList.remove('page--hide')
+          break
+        case 'page--hide':
+          if (nd !== null) {
+            nd.classList.remove('page--alphaOut')
+            nd.classList.remove('page--show')
+          }
+          break
+      }
       // 新增動畫
       if (nd !== null) {
         nd.classList.add(className)
@@ -570,14 +602,32 @@
 
       <div id="gameSnake" class="gameSnake-container">
         <div class="game-center">
-          <div class="gameHeader"></div>
+          <div class="gameHeader">
+            <!-- left-block -->
+            <div class="left-block">
+              <div id="gameAnim1" class="btn-item">
+                <div class="button" @click="clickListener(ACTIONS.GAMEBACK)"> BACK </div>
+              </div>
+              
+              <div id="gameAnim2" class="btn-item">
+                <div class="button" @click="clickListener(ACTIONS.GAMEREPLAY)">
+                  GAME <span class="space"></span> REPLAY
+                </div>
+              </div>
+
+              <div id="gameAnim3" class="btn-item">
+                <div class="button"> GAME <span class="space"></span> RESULT </div> 
+              </div>
+            </div>
+            <!-- right-block -->
+
+          </div>
           <div class="title-block">
-            <h1> SNAKE </h1>
+            <h1 id="gameTitleAnim" class="headline self" data-splitting> SNAKE </h1>
           </div>
           <!--创建游戏的主容器  -->
           <div id="main">
             <div class="mainBackground"></div>
-
             <!-- 设置游戏的舞台 -->
             <div id="stage">
 
@@ -596,12 +646,20 @@
                 <div></div>
               </div>
             </div>
-
             <!-- 设置计分盘 -->
             <div id="score-panel">
-              <div> SCORE: <span id="score">0</span> </div>
-              <div> LEVEL: <span id="level">1</span> </div>
+              <div class="block"> 
+                SCORE
+                <span class="semicolon">:</span>
+                <span id="score">0</span>
+              </div>
+              <div class="block">
+                LEVEL
+                <span class="semicolon">:</span>
+                <span id="level">1</span>
+              </div>
             </div>
+            <i id="scanLight" class="scan"></i>
           </div>
         </div>
       </div>

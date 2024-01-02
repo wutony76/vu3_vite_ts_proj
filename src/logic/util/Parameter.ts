@@ -1,6 +1,10 @@
 
 // CLICK事件狀態
 export const ACTIONS = {
+  GAMEBACK: 'game_back_btn', 
+  GAMEREPLAY: 'game_replay_btn', 
+  GAMERESULT: 'game_result_btn', 
+
   INDEX: 'go_index',
   SAMPLE: 'go_sample',
   BACK: 'page_back', // 返回BACK
@@ -21,6 +25,13 @@ export const VIEWS = {
   CONTROLS: 'view_controls',
   RANKING: 'view_ranking',
 }
+// export const GAME = {
+//   NONE: 'none',
+//   READY: 'ready',
+//   RUN: 'run',
+//   STOP: 'stop',
+//   END: 'end',
+// }
 export const UI = {
   CLICKLEFT: 'click-left',
   CLICKRIGHT: 'click-right',

@@ -221,8 +221,10 @@ body {
       .special-box {
         // 載入特殊字體
         @import url('https://fonts.googleapis.com/css?family=Coda+Caption:800');
+        // @import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:800');
         .title {
           text-align: center;
+          // font-family: 'Yanone Kaffeesatz', sans-serif;
           font-family: 'Coda Caption', sans-serif;
           color:#00ff00;
           font-weight: 800;
