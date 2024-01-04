@@ -2,6 +2,8 @@
 // CLICK事件狀態
 export const ACTIONS = {
   GAMEBACK: 'game_back_btn', 
+  GAMEPAUSE: 'game_pause_btn', 
+  GAMEPLAY: 'game_play_btn', 
   GAMEREPLAY: 'game_replay_btn', 
   GAMERESULT: 'game_result_btn', 
 
@@ -24,6 +26,13 @@ export const VIEWS = {
   DETAILS: 'view_details',
   CONTROLS: 'view_controls',
   RANKING: 'view_ranking',
+
+  NONE:'NONE',
+  READY:'READY',
+  PLAYING:'PLAYING',
+  PAUSE: 'PAUSE',
+  RESULT:'RESULT',
+  END:'END'
 }
 // export const GAME = {
 //   NONE: 'none',

@@ -212,8 +212,20 @@
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
   }
+  .animation-right-btn-move {
+    animation: game_right_move;
+    animation-duration: 0.6s; // 持續時間
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+  }
   .animation-right {
     animation-name: rightBtn01; // 動畫名稱
+    animation-duration: 1s; // 持續時間
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+  }
+  .animation-left {
+    animation-name: leftBtn01; // 動畫名稱
     animation-duration: 1s; // 持續時間
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
@@ -342,26 +354,46 @@
       transform: scale(0);
     }
 
-    20% {
-      transform: scale(1.2);
-    }
+    // 20% {
+    //   transform: scale(1.2);
+    // }
 
-    40% {
-      transform: scale(0.89);
-    }
+    // 40% {
+    //   transform: scale(0.89);
+    // }
 
     60% {
-      transform: scale(1.04);
+      transform: scaleX(1.04);
     }
 
-    80% {
-      transform: scale(0.98);
-    }
+    // 80% {
+    //   transform: scale(0.98);
+    // }
 
     90% {
       right: -30px;
+      transform: scaleX(0.3);
     }
 
+    100% {
+      right: 0px;
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes game_right_move {
+    0% {
+      right: -500px;
+      opacity: 0;
+      transform: scale(0);
+    }
+    60% {
+      transform: scaleX(1.04);
+    }
+    90% {
+      right: 30px;
+      transform: scaleX(0.3);
+    }
     100% {
       right: 0px;
       opacity: 1;

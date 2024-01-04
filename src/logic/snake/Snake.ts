@@ -20,6 +20,13 @@ export default class Snake {
   }
   init (dis:number) {
     this.distance = dis
+
+    this.x = 0
+    this.y = 0
+    for (let i = this.bodies.length - 1; i > 0; i--) {
+      const bodyElement:HTMLElement = this.bodies[i] as HTMLElement 
+      this.snake.removeChild(bodyElement)
+    }
   }
 
   get x():number {

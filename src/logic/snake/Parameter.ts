@@ -16,8 +16,9 @@ export const GAMESTATUS = {
   WAITING: 'waiting',
   READY: 'ready',
   START: 'start',
-  STOP: 'stop',
-  RUN: 'run',
+  PAUSE: 'pause',
+  PLAYING: 'playing',
+  // RUN: 'run',
   END: 'end',
   RESULT: 'result'
 }

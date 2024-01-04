@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { onBeforeUnmount, onMounted, reactive } from 'vue'
+  import { onBeforeUnmount, onMounted, reactive, watch } from 'vue'
   import Splitting from 'splitting'
   import Game from '@/logic/snake/Game'
   import { GAMESTATUS } from '@/logic/snake/Parameter'
@@ -17,6 +17,7 @@
     game: null,
     gameStatus: GAMESTATUS.WAITING, // GAMESTATUS.WAITING,
     viewStatus: '',
+    showStatus: VIEWS.NONE,
     viewWaitingVisible: false,
     viewReadyVisible: false,
     viewResultVisible: false,
@@ -32,7 +33,9 @@
         {rank: '8', name: 'SISI.CC', score: 439290},
         {rank: '9', name: 'GOYES', score: 198021}
       ]
-    }
+    },
+    score: 0,
+    level: 1,
   })
 
   // const getRandom = (min:number, max:number) => {
@@ -63,6 +66,7 @@
       if (currNum === targetNum || !node) clearInterval(interval)
     }, 10);
   }
+  var selfGame: Game|null = null
 
   // CLICKLISTENER.事件
   const clickListener = (actions:string) => {
@@ -70,16 +74,34 @@
     switch (actions) {
       case ACTIONS.GAMEREPLAY:
         if (state.gameStatus === GAMESTATUS.START) {
-          state.game.updateStatus(GAMESTATUS.STOP)
-          console.log('click.game', state.game)
-
-          // setTimeout(() => {
-          //   state.gameStatus = GAMESTATUS.READY
-          //   changeGameStatus(state.gameStatus)
-          // }, 1000)
+          selfGame?.updateStatus(GAMESTATUS.PAUSE)
+          setTimeout(() => {
+            state.gameStatus = GAMESTATUS.READY
+            changeGameStatus(state.gameStatus)
+          }, 1000)
+        }
+        break
+      case ACTIONS.GAMEPAUSE:
+        if (
+          state.gameStatus === GAMESTATUS.START &&
+          state.showStatus === VIEWS.PLAYING
+        ) {
+          selfGame?.updateStatus(GAMESTATUS.PAUSE)
+          state.showStatus = VIEWS.PAUSE
+        }
+        break
+      case ACTIONS.GAMEPLAY:
+        if (
+          state.gameStatus === GAMESTATUS.START &&
+          state.showStatus === VIEWS.PAUSE
+        ) {
+          selfGame?.updateStatus(GAMESTATUS.PLAYING)
+          selfGame?.run()
+          state.showStatus = VIEWS.PLAYING
         }
         break
       case ACTIONS.GAMERESULT:
+          state.showStatus = VIEWS.RESULT
         break
 
       case ACTIONS.GAMEBACK:
@@ -188,6 +210,8 @@
       case GAMESTATUS.WAITING:
         state.viewWaitingVisible = true 
         state.viewStatus = VIEWS.WAIT
+        state.showStatus = VIEWS.NONE
+
         // start.animation
         animationStatus('settingsBtn', 'button-rotate', 100)
         animationStatus('anim01', 'headline--self001', 1000)
@@ -197,6 +221,8 @@
       // 遊戲準備中倒數3秒
       case GAMESTATUS.READY:
         animationRemoveClass('scanLight', 'animation-scan-lights')
+        state.showStatus = VIEWS.READY
+
         setTimeout(() => {
           state.viewReadyVisible = true 
           animationStatus('numberAnim1', 'animation-zoom-in', 10)
@@ -212,30 +238,46 @@
         break
       // 遊戲開始
       case GAMESTATUS.START:
+        state.showStatus = VIEWS.PLAYING
         state.viewReadyVisible = false 
         animationRemoveClass('numberAnim1', 'animation-zoom-in')
         animationRemoveClass('numberAnim2', 'animation-zoom-in')
         animationRemoveClass('numberAnim3', 'animation-zoom-in')
 
         animationStatus('gameTitleAnim', 'headline--self001', 10)
+        // animationStatus('gameTitleAnim2', 'headline--self001', 10)
+
         animationStatus('gameAnim1', 'animation-left-btn-move', 110)
         animationStatus('gameAnim2', 'animation-left-btn-move', 310)
         animationStatus('gameAnim3', 'animation-left-btn-move', 510)
+        animationStatus('gameAnim4', 'animation-left-btn-move', 710)
+        animationStatus('gameAnim5', 'animation-left-btn-move', 910)
+        animationStatus('gameAnim1', 'animation-right', 1900)
+        animationStatus('gameAnim2', 'animation-right', 1700)
+        animationStatus('gameAnim3', 'animation-right', 1500)
+        animationStatus('gameAnim4', 'animation-right', 1300)
+        animationStatus('gameAnim5', 'animation-right', 1100)
 
-        // animationStatus('gameAnim1', 'animation-right', 600)
-        // animationStatus('gameAnim2', 'animation-right', 600)
-        // animationStatus('gameAnim3', 'animation-right', 600)
-        // state.game = new Game().setCallback(() => {
-        //   // 設定.RESULT STATUS
-        //   state.gameStatus = GAMESTATUS.RESULT
-        //   setTimeout(() => {
-        //     changeGameStatus( state.gameStatus )
-        //   }, 1000)
-        // })
+        animationStatus('gameRightAnim1', 'animation-right-btn-move', 260)
+        animationStatus('gameRightAnim2', 'animation-right-btn-move', 460)
+        animationStatus('gameRightAnim3', 'animation-right-btn-move', 660)
+        animationStatus('gameRightAnim1', 'animation-left', 1650)
+        animationStatus('gameRightAnim2', 'animation-left', 1450)
+        animationStatus('gameRightAnim3', 'animation-left', 1250)
+        
+        selfGame = new Game(state)
+        selfGame.setCallback(() => {
+          // 設定.RESULT STATUS
+          state.gameStatus = GAMESTATUS.RESULT
+          setTimeout(() => {
+            changeGameStatus( state.gameStatus )
+          }, 1000)
+        })
         break
       // 遊戲結果
       case GAMESTATUS.RESULT:
         animationRemoveClass('scanLight', 'animation-scan-lights')
+        state.showStatus = VIEWS.RESULT
         state.viewResultVisible = true
         animationStatus('rePlayBtn', 'button--alpha', 3000)
         animationStatus('exitGameBtn', 'button--alpha', 3000)
@@ -313,6 +355,12 @@
   //   animationRemoveClass('waittingPage', 'page--alphaOut')
   // }
 
+  watch(() => [state.showStatus, selfGame?.score], (newVal, oldVal) => {
+    console.log( 'watch', newVal, oldVal)
+    setTimeout(() => {
+      // Splitting()
+    }, 100)
+  })
   onMounted (() => {
     Splitting()
   }) 
@@ -600,6 +648,10 @@
         </div>
       </div>
 
+      <!-- <br/> boolean = {{ state.showStatus === VIEWS.PAUSE }}
+      <br/> showStatus = {{ state.showStatus }}
+      <br/> GAMEPAUSE = {{ VIEWS.PAUSE }} -->
+
       <div id="gameSnake" class="gameSnake-container">
         <div class="game-center">
           <div class="gameHeader">
@@ -608,23 +660,50 @@
               <div id="gameAnim1" class="btn-item">
                 <div class="button" @click="clickListener(ACTIONS.GAMEBACK)"> BACK </div>
               </div>
-              
               <div id="gameAnim2" class="btn-item">
+                <div class="button" @click="clickListener(ACTIONS.GAMEPLAY)"> PLAYING </div>
+              </div>
+              <div id="gameAnim3" class="btn-item">
+                <div class="button" @click="clickListener(ACTIONS.GAMEPAUSE)"> PAUSE </div>
+              </div>
+              <div id="gameAnim4" class="btn-item">
                 <div class="button" @click="clickListener(ACTIONS.GAMEREPLAY)">
                   GAME <span class="space"></span> REPLAY
                 </div>
               </div>
-
-              <div id="gameAnim3" class="btn-item">
-                <div class="button"> GAME <span class="space"></span> RESULT </div> 
+              <div id="gameAnim5" class="btn-item">
+                <div class="button">
+                  GAME <span class="space"></span> RESULT
+                </div> 
               </div>
             </div>
+
             <!-- right-block -->
+            <div class="right-block">
+              <div id="gameRightAnim1" class="btn-item">
+                <div class="button" @click="clickListener(ACTIONS.GAMEBACK)"> DETAILS </div>
+              </div>
+              <div id="gameRightAnim2" class="btn-item">
+                <div class="button" @click="clickListener(ACTIONS.GAMEPLAY)"> CONTROLS </div>
+              </div>
+              <div id="gameRightAnim3" class="btn-item">
+                <div class="button" @click="clickListener(ACTIONS.GAMEPLAY)"> RANKING </div>
+              </div>
+
+            </div>
 
           </div>
+
           <div class="title-block">
             <h1 id="gameTitleAnim" class="headline self" data-splitting> SNAKE </h1>
           </div>
+
+          <div class="status-block">
+            <h5 id="gameTitleAnim2">
+              {{ state.showStatus }}
+            </h5>
+          </div>
+
           <!--创建游戏的主容器  -->
           <div id="main">
             <div class="mainBackground"></div>
@@ -651,7 +730,7 @@
               <div class="block"> 
                 SCORE
                 <span class="semicolon">:</span>
-                <span id="score">0</span>
+                <span id="score"> {{ state.score }} </span>
               </div>
               <div class="block">
                 LEVEL
@@ -661,6 +740,8 @@
             </div>
             <i id="scanLight" class="scan"></i>
           </div>
+
+          <div class="footer"> SNAKE.GAME @ 2023.12 </div>
         </div>
       </div>
 

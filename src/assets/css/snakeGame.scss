@@ -91,29 +91,16 @@
   .game-container {
     .game-center {
       width: 500px;
+      height: 100%;
       margin: 0 auto;
+      position: relative;
+
       .gameHeader {
         height: 85px;
-
         .left-block {
-          // position: relative;
-          // top: 140px;
-          // left: -270px;
-          // width: 300px;
-
-          // text-align: right;
-          // margin-bottom: 15px;
-
-          // display: flex;
-          // flex-direction: column;
-
-          // perspective-origin: 50% 100%;
-          // perspective: 255px;
-
-
           position: relative;
           transform: scale(1);
-          top: 140px;
+          top: 200px;
           left: -150px;
           width: 340px;
           text-align: right;
@@ -129,10 +116,10 @@
             opacity: 0;
 
             // margin-bottom: 15px;
-            margin-bottom: 5px;
+            margin-bottom: 25px;
             text-align: left;
+            height: 25px;
           }
-
           .button {
             border: 1px solid #00ff0035;
             border-radius: 3px;
@@ -154,7 +141,48 @@
             }
           }
         }
+        .right-block {
+          position: relative;
+          transform: scale(1);
+          top: 120px;
+          right: -295px;
+          width: 340px;
+          text-align: right;
+          margin-bottom: 15px;
+          display: flex;
+          flex-direction: column;
+          perspective-origin: 25% 160%;
+          perspective: 500px;
 
+          .btn-item {
+            position: relative;
+            right: 0px;
+            opacity: 0;
+            margin-bottom: 25px;
+            text-align: right;
+            height: 25px;
+          }
+          .button {
+            border: 1px solid #00ff0035;
+            border-radius: 3px;
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: -3px;
+            padding: 7px 15px;
+            color: #00ff00;
+            display: inline-block;
+            cursor: pointer;
+        
+            .space {
+              margin-left: 7px;
+            }
+        
+            &:hover {
+              border: 1px solid #00ff00;
+              animation: anim_intro 1s 0.7s forwards infinite;
+            }
+          }
+        }
       }
       .title-block {
         position: relative;
@@ -167,9 +195,26 @@
           letter-spacing: -6px;
         }
       }
+      .status-block {
+        position: absolute;
+        width: 100%;
+        // top: 170px;
+        top: 390px;
+        right: -188px;
+        
+        transform: rotate(90deg);
+
+        color: #00ff00;
+        font-size: 23px;
+        font-weight: 600;
+        text-align: left;
+        // letter-spacing: -3.5px;
+        letter-spacing: 3px;
+      }
 
       #main {
         height: 380px;
+        margin: 0 auto;
         margin-top: -10px;
         // border-color: #001800;
         // border-image-source: linear-gradient(to right, #8f41e9, #578aef);
@@ -252,7 +297,10 @@
           // animation: ScanLights 3s linear 1s infinite;
         }
       }
-
+      .footer {
+        color: #ff0000;
+        font-size: 10px;
+      }
 
     }
   }
