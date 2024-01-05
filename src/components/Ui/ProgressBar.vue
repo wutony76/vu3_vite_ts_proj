@@ -72,14 +72,13 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
   .brogress-box {
     width: 100%;
     margin-left: 15px;
 
     display:flex;
     align-items: center;
-
 
     .progress-bar {
       height: 30px;
@@ -88,6 +87,7 @@
       border-radius: 3px;
       background: #002d00cc;
     }
+
     .progress-fill {
       height: 100%;
       background: #00ff00;
