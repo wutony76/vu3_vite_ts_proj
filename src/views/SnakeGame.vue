@@ -105,13 +105,11 @@
         break
 
       case ACTIONS.GAMEDETAILS:
-        animationRemoveClass('gameControlsBlock', 'page--show')
+        // animationRemoveClass('gameControlsBlock', 'page--show')
         animationRemoveClass('gameDetailsBlock', 'page--show')
-        // animationRemoveClass('gameDetailsBlock', 'page--show')
-        // animationRemoveClass('gameDetailsBlock', 'page--show')
 
         setTimeout(() => {
-          animationStatus('gameControlsBlock', 'page--hide', 10)
+          // animationStatus('gameControlsBlock', 'page--hide', 10)
           animationStatus('gameDetailsBlock', 'page--show', 10)
 
           animationStatus('gameDetailsCont1', 'opacityAlpha0', 10)
@@ -123,11 +121,11 @@
         })
         break
       case ACTIONS.GAMECONTROLS:
-        animationRemoveClass('gameDetailsBlock', 'page--show')
+        // animationRemoveClass('gameDetailsBlock', 'page--show')
         animationRemoveClass('gameControlsBlock', 'page--show')
 
         setTimeout(() => {
-          animationStatus('gameDetailsBlock', 'page--hide', 10)
+          // animationStatus('gameDetailsBlock', 'page--hide', 10)
           animationStatus('gameControlsBlock', 'page--show', 10)
 
         })
@@ -706,6 +704,10 @@
                   GAME <span class="space"></span> RESULT
                 </div> 
               </div>
+
+              <div id="gameRankingBlock" class="ranking-block page--hide">
+                Ranking
+              </div> 
             </div>
 
             <!-- right-block -->
@@ -733,10 +735,7 @@
               <div id="gameControlsBlock" class="controls-block page--hide">
                 Controls
               </div>
-              <div id="gameRankingBlock" class="ranking-block page--hide">
-                Ranking
-              </div>
-
+              
             </div>
           </div>
 
