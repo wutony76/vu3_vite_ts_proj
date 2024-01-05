@@ -77,6 +77,12 @@
 
   // 跳動文字 
   .headline--self001 {
+    .word {
+      .char {
+        opacity: 0;
+      }
+    }
+
     .char {
       --name: anim001;
       --dur: 800ms;

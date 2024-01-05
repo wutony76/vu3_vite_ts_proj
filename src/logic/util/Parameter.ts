@@ -7,6 +7,10 @@ export const ACTIONS = {
   GAMEREPLAY: 'game_replay_btn', 
   GAMERESULT: 'game_result_btn', 
 
+  GAMEDETAILS: 'game_details_btn', 
+  GAMECONTROLS: 'game_controls_btn', 
+  GAMERANKING: 'game_ranking_btn', 
+
   INDEX: 'go_index',
   SAMPLE: 'go_sample',
   BACK: 'page_back', // 返回BACK

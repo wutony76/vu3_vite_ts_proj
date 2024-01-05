@@ -104,6 +104,37 @@
           state.showStatus = VIEWS.RESULT
         break
 
+      case ACTIONS.GAMEDETAILS:
+        animationRemoveClass('gameControlsBlock', 'page--show')
+        animationRemoveClass('gameDetailsBlock', 'page--show')
+        // animationRemoveClass('gameDetailsBlock', 'page--show')
+        // animationRemoveClass('gameDetailsBlock', 'page--show')
+
+        setTimeout(() => {
+          animationStatus('gameControlsBlock', 'page--hide', 10)
+          animationStatus('gameDetailsBlock', 'page--show', 10)
+
+          animationStatus('gameDetailsCont1', 'opacityAlpha0', 10)
+          animationStatus('gameDetailsCont2', 'opacityAlpha0', 10)
+          animationStatus('gameDetailsCont1', 'opacityAlpha1', 300)
+          animationStatus('gameDetailsCont2', 'opacityAlpha1', 1300)
+          animationStatus('gameDetailsCont1', 'headline--self001', 300)
+          animationStatus('gameDetailsCont2', 'headline--self001', 1300)
+        })
+        break
+      case ACTIONS.GAMECONTROLS:
+        animationRemoveClass('gameDetailsBlock', 'page--show')
+        animationRemoveClass('gameControlsBlock', 'page--show')
+
+        setTimeout(() => {
+          animationStatus('gameDetailsBlock', 'page--hide', 10)
+          animationStatus('gameControlsBlock', 'page--show', 10)
+
+        })
+        break
+      case ACTIONS.GAMERANKING:
+        break
+
       case ACTIONS.GAMEBACK:
       case ACTIONS.RELOAD:
       case ACTIONS.REPLAY:
@@ -243,7 +274,6 @@
         animationRemoveClass('numberAnim1', 'animation-zoom-in')
         animationRemoveClass('numberAnim2', 'animation-zoom-in')
         animationRemoveClass('numberAnim3', 'animation-zoom-in')
-
         animationStatus('gameTitleAnim', 'headline--self001', 10)
         // animationStatus('gameTitleAnim2', 'headline--self001', 10)
 
@@ -681,17 +711,33 @@
             <!-- right-block -->
             <div class="right-block">
               <div id="gameRightAnim1" class="btn-item">
-                <div class="button" @click="clickListener(ACTIONS.GAMEBACK)"> DETAILS </div>
+                <div class="button" @click="clickListener(ACTIONS.GAMEDETAILS)"> DETAILS </div>
               </div>
               <div id="gameRightAnim2" class="btn-item">
-                <div class="button" @click="clickListener(ACTIONS.GAMEPLAY)"> CONTROLS </div>
+                <div class="button" @click="clickListener(ACTIONS.GAMECONTROLS)"> CONTROLS </div>
               </div>
               <div id="gameRightAnim3" class="btn-item">
                 <div class="button" @click="clickListener(ACTIONS.GAMEPLAY)"> RANKING </div>
               </div>
 
-            </div>
+              <div id="gameDetailsBlock" class="details-block page--hide">
+                <div class="content">
+                  <div id="gameDetailsCont1" class="block headline self" data-splitting>
+                    In the game, the player controls the snake.
+                  </div>
+                  <div id="gameDetailsCont2" class="block eadline self" data-splitting>
+                    which will keep moving forward, picking up objects it touches along the way.
+                  </div>
+                </div>
+              </div>
+              <div id="gameControlsBlock" class="controls-block page--hide">
+                Controls
+              </div>
+              <div id="gameRankingBlock" class="ranking-block page--hide">
+                Ranking
+              </div>
 
+            </div>
           </div>
 
           <div class="title-block">

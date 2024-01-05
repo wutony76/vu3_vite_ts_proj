@@ -89,6 +89,22 @@
 
   // SNAKE
   .game-container {
+
+    // FUNCTIONS 
+    .page--show {
+      display: block;
+    }
+    .page--hide {
+      display: none;
+    }
+    .opacityAlpha0 {
+      opacity: 0;
+    }
+    .opacityAlpha1 {
+      opacity: 1;
+    }
+    
+
     .game-center {
       width: 500px;
       height: 100%;
@@ -181,6 +197,40 @@
               border: 1px solid #00ff00;
               animation: anim_intro 1s 0.7s forwards infinite;
             }
+          }
+
+          .details-block {
+            position: absolute;
+            top: -250px;
+            right: -150px;
+            width: 300px;
+            text-align: left;
+
+            .content {
+              .block {
+                margin-top: unset;
+                margin-bottom: 10px;
+                color: #00ff00;
+              }
+            }
+          }
+
+          .controls-block {
+            position: absolute;
+            top: -250px;
+            right: -150px;
+            width: 300px;
+            text-align: left;
+            .content {
+
+            }
+          }
+
+
+          .main-block {
+            border: 1px solid #00ff00;
+            border-radius: 3px;
+
           }
         }
       }
