@@ -207,8 +207,8 @@
             width: 350px;
             // top: 190px;
             // left: -330px;
-            top: 190px;
-            left: -225px;
+            top: 200px;
+            left: -285px;
 
             .title {
               color: #0ce80c;
@@ -255,6 +255,7 @@
 
           }
         }
+
         .right-block {
           position: relative;
           transform: scale(1);
@@ -300,7 +301,7 @@
           // details資訊
           .details-block {
             position: absolute;
-            top: -265px;
+            top: -260px;
             right: -150px;
             width: 300px;
             text-align: left;

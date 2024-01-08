@@ -2,6 +2,7 @@ import Control from '@/logic/snake/Control'
 import Snake from '@/logic/snake/Snake'
 import Food from '@/logic/snake/Food'
 import {EVENTS, GAMESTATUS} from '@/logic/snake/Parameter'
+import { ACTIONS } from '@/logic/util/Parameter'
 
 export default class Game {
   snake:Snake
@@ -38,6 +39,7 @@ export default class Game {
     this.snake.init(this.distance)
     this.state.score = 0
     this.state.level = 1 
+    this.state.controlStatus = this.returnkeybordKeyToDirection(this.direction) 
 
     this.control.init()
     this.status = GAMESTATUS.READY 
@@ -81,7 +83,10 @@ export default class Game {
 
     // 方向
     const clickKey = this.control.event
-    if (clickKey !== null) this.direction = clickKey 
+    if (clickKey !== null) {
+      this.state.controlStatus = this.returnkeybordKeyToDirection(this.direction)
+      this.direction = clickKey 
+    }
     console.log('direction = ', this.direction)
 
     // 計算
@@ -113,4 +118,23 @@ export default class Game {
     else newScore = processData 
     return newScore 
   }
+  returnkeybordKeyToDirection (keybordKey:string) {
+    let direction = '' 
+    switch(keybordKey) {
+      case EVENTS.UP:
+        direction = ACTIONS.CONTROLSUP
+        break
+      case EVENTS.DOWN:
+        direction = ACTIONS.CONTROLSDOWN
+        break
+      case EVENTS.LEFT:
+        direction = ACTIONS.CONTROLSLEFT
+        break
+      case EVENTS.RIGHT:
+        direction = ACTIONS.CONTROLSRIGHT
+        break
+    }
+    return direction 
+  }
+
 }

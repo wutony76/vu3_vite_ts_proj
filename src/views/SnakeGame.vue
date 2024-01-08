@@ -106,43 +106,71 @@
         break
 
       case ACTIONS.GAMEDETAILS:
-        // animationRemoveClass('gameControlsBlock', 'page--show')
         animationRemoveClass('gameDetailsBlock', 'page--show')
+        animationRemoveClass('gameDetailsCont1', 'opacityAlpha0')
+        animationRemoveClass('gameDetailsCont1', 'opacityAlpha1')
+        animationRemoveClass('gameDetailsCont1', 'headline--self001')
+        animationRemoveClass('gameDetailsCont2', 'opacityAlpha0')
+        animationRemoveClass('gameDetailsCont2', 'opacityAlpha1')
+        animationRemoveClass('gameDetailsCont2', 'headline--self001')
 
         setTimeout(() => {
-          // animationStatus('gameControlsBlock', 'page--hide', 10)
           animationStatus('gameDetailsBlock', 'page--show', 10)
-
           animationStatus('gameDetailsCont1', 'opacityAlpha0', 10)
           animationStatus('gameDetailsCont2', 'opacityAlpha0', 10)
           animationStatus('gameDetailsCont1', 'opacityAlpha1', 300)
           animationStatus('gameDetailsCont2', 'opacityAlpha1', 1300)
           animationStatus('gameDetailsCont1', 'headline--self001', 300)
           animationStatus('gameDetailsCont2', 'headline--self001', 1300)
-        })
+        }, 5)
         break
       case ACTIONS.GAMECONTROLS:
         animationRemoveClass('gameControlsBlock', 'page--show')
+        animationRemoveClass('gameControlsBlock', 'opacityAlpha0')
+        animationRemoveClass('gameControlsBlock', 'opacityAlpha1')
+        animationRemoveClass('gameControlsBlock', 'page--alphaIn')
         setTimeout(() => {
           animationStatus('gameControlsBlock', 'page--show', 10)
           animationStatus('gameControlsBlock', 'opacityAlpha0', 10)
           animationStatus('gameControlsBlock', 'opacityAlpha1', 500)
           animationStatus('gameControlsBlock', 'page--alphaIn', 500)
-        })
+        }, 5)
         break
       case ACTIONS.GAMERANKING:
         animationRemoveClass('gameRankingBlock', 'page--show')
-        animationRemoveClass('contactUsBlock', 'page--show')
-        setTimeout(() => {
-          animationStatus('gameRankingBlock', 'page--show', 10)
-          animationStatus('contactUsBlock', 'page--show', 300)
+        animationRemoveClass('gameRankingBlock', 'opacityAlpha0')
+        animationRemoveClass('gameRankingBlock', 'opacityAlpha1')
+        animationRemoveClass('gameRankingBlock', 'page--alphaIn')
 
+        animationRemoveClass('contactUsBlock', 'page--show')
+        animationRemoveClass('gameCaptionTitle1', 'opacityAlpha0')
+        animationRemoveClass('gameCaptionTitle1', 'opacityAlpha1')
+        animationRemoveClass('gameCaptionTitle1', 'headline--self001')
+        animationRemoveClass('gameCaptionCont1', 'opacityAlpha0')
+        animationRemoveClass('gameCaptionCont1', 'opacityAlpha1')
+        animationRemoveClass('gameCaptionCont1', 'headline--self001')
+        animationRemoveClass('gameCaptionCont2', 'opacityAlpha0')
+        animationRemoveClass('gameCaptionCont2', 'opacityAlpha1')
+        animationRemoveClass('gameCaptionCont2', 'headline--self001')
+
+        animationRemoveClass('infoCaptionEmail', 'opacityAlpha0')
+        animationRemoveClass('infoCaptionEmail', 'opacityAlpha1')
+        animationRemoveClass('infoCaptionEmail', 'animation-right-btn-move')
+        animationRemoveClass('infoCaptionFacebook', 'opacityAlpha0')
+        animationRemoveClass('infoCaptionFacebook', 'opacityAlpha1')
+        animationRemoveClass('infoCaptionFacebook', 'animation-right-btn-move')
+        animationRemoveClass('infoCaptionLinkein', 'opacityAlpha0')
+        animationRemoveClass('infoCaptionLinkein', 'opacityAlpha1')
+        animationRemoveClass('infoCaptionLinkein', 'animation-right-btn-move')
+
+        setTimeout(() => {
           // RANKING-BLOCK
+          animationStatus('gameRankingBlock', 'page--show', 10)
           animationStatus('gameRankingBlock', 'opacityAlpha0', 10)
           animationStatus('gameRankingBlock', 'opacityAlpha1', 3000)
           animationStatus('gameRankingBlock', 'page--alphaIn', 3000)
-          
           // CONTACT-BLOCK
+          animationStatus('contactUsBlock', 'page--show', 10)
           animationStatus('gameCaptionTitle1', 'opacityAlpha0', 10)
           animationStatus('gameCaptionTitle1', 'opacityAlpha1', 310 + 300)
           animationStatus('gameCaptionTitle1', 'headline--self001', 310 + 300)
@@ -161,8 +189,7 @@
           animationStatus('infoCaptionEmail', 'animation-right-btn-move', 2100)
           animationStatus('infoCaptionFacebook', 'animation-right-btn-move', 2300)
           animationStatus('infoCaptionLinkein', 'animation-right-btn-move', 2500)
-
-        })
+        }, 5)
         break
 
       case ACTIONS.GAMEBACK:
@@ -388,9 +415,7 @@
     if (nd !== null) nd.classList.remove(className) 
   }
   const simulationClick = (elementId:string, timeOut: number) => {
-    console.log('simulationClick')
     setTimeout(() => {
-      console.log('ttt', document.getElementById(elementId))
       document.getElementById(elementId)?.click()
     }, timeOut)
   }
@@ -438,7 +463,7 @@
   onBeforeUnmount(() => {
     console.log('ttt.onBeforeUnmount')
   })
-  changeGameStatus( state.gameStatus )
+  changeGameStatus( state.gameStatus)
 </script>
 
 <template>
@@ -856,6 +881,7 @@
           <div class="status-block">
             <h5 id="gameTitleAnim2">
               {{ state.showStatus }}
+              - {{ state.controlStatus }}
             </h5>
           </div>
 
