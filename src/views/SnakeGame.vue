@@ -18,6 +18,7 @@
     gameStatus: GAMESTATUS.WAITING, // GAMESTATUS.WAITING,
     viewStatus: '',
     showStatus: VIEWS.NONE,
+    controlStatus: ACTIONS.CONTROLSRIGHT,
     viewWaitingVisible: false,
     viewReadyVisible: false,
     viewResultVisible: false,
@@ -121,16 +122,47 @@
         })
         break
       case ACTIONS.GAMECONTROLS:
-        // animationRemoveClass('gameDetailsBlock', 'page--show')
         animationRemoveClass('gameControlsBlock', 'page--show')
-
         setTimeout(() => {
-          // animationStatus('gameDetailsBlock', 'page--hide', 10)
           animationStatus('gameControlsBlock', 'page--show', 10)
-
+          animationStatus('gameControlsBlock', 'opacityAlpha0', 10)
+          animationStatus('gameControlsBlock', 'opacityAlpha1', 500)
+          animationStatus('gameControlsBlock', 'page--alphaIn', 500)
         })
         break
       case ACTIONS.GAMERANKING:
+        animationRemoveClass('gameRankingBlock', 'page--show')
+        animationRemoveClass('contactUsBlock', 'page--show')
+        setTimeout(() => {
+          animationStatus('gameRankingBlock', 'page--show', 10)
+          animationStatus('contactUsBlock', 'page--show', 300)
+
+          // RANKING-BLOCK
+          animationStatus('gameRankingBlock', 'opacityAlpha0', 10)
+          animationStatus('gameRankingBlock', 'opacityAlpha1', 3000)
+          animationStatus('gameRankingBlock', 'page--alphaIn', 3000)
+          
+          // CONTACT-BLOCK
+          animationStatus('gameCaptionTitle1', 'opacityAlpha0', 10)
+          animationStatus('gameCaptionTitle1', 'opacityAlpha1', 310 + 300)
+          animationStatus('gameCaptionTitle1', 'headline--self001', 310 + 300)
+          animationStatus('gameCaptionCont1', 'opacityAlpha0', 10)
+          animationStatus('gameCaptionCont2', 'opacityAlpha0', 10)
+          animationStatus('gameCaptionCont1', 'opacityAlpha1', 310 + 300)
+          animationStatus('gameCaptionCont2', 'opacityAlpha1', 310 + 1310)
+          animationStatus('gameCaptionCont1', 'headline--self001', 310 + 300)
+          animationStatus('gameCaptionCont2', 'headline--self001', 310 + 1310)
+          animationStatus('infoCaptionEmail', 'opacityAlpha0', 10)
+          animationStatus('infoCaptionFacebook', 'opacityAlpha0', 10)
+          animationStatus('infoCaptionLinkein', 'opacityAlpha0', 10)
+          animationStatus('infoCaptionEmail', 'opacityAlpha1', 2100)
+          animationStatus('infoCaptionFacebook', 'opacityAlpha1', 2300)
+          animationStatus('infoCaptionLinkein', 'opacityAlpha1', 2500)
+          animationStatus('infoCaptionEmail', 'animation-right-btn-move', 2100)
+          animationStatus('infoCaptionFacebook', 'animation-right-btn-move', 2300)
+          animationStatus('infoCaptionLinkein', 'animation-right-btn-move', 2500)
+
+        })
         break
 
       case ACTIONS.GAMEBACK:
@@ -292,6 +324,10 @@
         animationStatus('gameRightAnim1', 'animation-left', 1650)
         animationStatus('gameRightAnim2', 'animation-left', 1450)
         animationStatus('gameRightAnim3', 'animation-left', 1250)
+
+        simulationClick('gameRightDetails', 3000)
+        simulationClick('gameRightControls', 4000)
+        simulationClick('gameRightRanking', 4500)
         
         selfGame = new Game(state)
         selfGame.setCallback(() => {
@@ -350,6 +386,13 @@
   const animationRemoveClass = (animStatus: string, className: string) => {
     const nd = document.getElementById(animStatus)
     if (nd !== null) nd.classList.remove(className) 
+  }
+  const simulationClick = (elementId:string, timeOut: number) => {
+    console.log('simulationClick')
+    setTimeout(() => {
+      console.log('ttt', document.getElementById(elementId))
+      document.getElementById(elementId)?.click()
+    }, timeOut)
   }
   const changeViewStatus = (viewStatus:string) => {
     switch (viewStatus) {
@@ -706,20 +749,79 @@
               </div>
 
               <div id="gameRankingBlock" class="ranking-block page--hide">
-                Ranking
+                <div class="title"> RANKING </div>
+                <div class="main-block">
+                  <div class="item"> John </div>
+                  <div class="item"> Toyo222 </div>
+                  <div class="item"> FAT333 </div>
+                  <div class="item"> HappyFAT </div>
+                  <div class="item"> FatYoYo </div>
+                  <div class="item"> Anay </div>
+                  <div class="item"> Candy </div>
+                  <div class="item"> PPig </div>
+                  <div class="item"> myKing </div>
+                  <div class="item"> 54987 </div>
+                  <div class="item"> 1951 </div>
+                  <div class="item"> Gogo333 </div>
+                  <div class="item"> Mr.Yo </div>
+                  <div class="item"> Ms.123 </div>
+                  <div class="item"> white </div>
+                  <div class="item"> TONY </div>
+                  <div class="item"> WU.tony </div>
+                  <div class="item"> archer </div>
+                  <div class="item"> Jojo </div>
+                  <div class="item"> ABC </div>
+                  <div class="item"> Digg </div>
+                  <div class="item"> SHEEP </div>
+                  <div class="item"> sleep.King </div>
+                  <div class="item"> Yang </div>
+                  <div class="item"> Tang </div>
+                  <div class="item"> Tung </div>
+                  <div class="item"> PIG </div>
+                  <div class="item"> GG123 </div>
+                  <div class="item"> 2241 </div>
+                  <div class="item"> AAA </div>
+                  <div class="item"> ddd3v </div>
+                  <div class="item"> GG14s </div>
+                  <div class="item"> 24ss </div>
+                  <div class="item"> M64 </div>
+                  <div class="item"> END21 </div>
+                </div>
+                <div class="footer"> HISTORY.RANKING </div>
               </div> 
+              <div id="contactUsBlock" class="contact-block page--hide">
+                <div class="content">
+                  <div id="gameCaptionTitle1" class="title headline self" data-splitting> CONTACT DEVELOPER </div>
+                  <div class="main-block">
+                    <div class="caption">
+                      <span id="gameCaptionCont1" class="c1 headline self" data-splitting>
+                        If you have any questions or suggestions in the game, please contact me.
+                      </span>
+                      <span id="gameCaptionCont2" class="c2 headline self" data-splitting>
+                        I am a happy fat nerd who likes to play games and watch movies.
+                      </span>
+                    </div>
+
+                    <div class="info-block">
+                      <div id="infoCaptionEmail" class="email"> E-mail: wutony76@gmail.com </div>
+                      <div id="infoCaptionFacebook" class="facebook"> Facebook: wutony76@gmail.com </div>
+                      <div id="infoCaptionLinkein" class="linkein"> LinkedIn: wutony76@gmail.com </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- right-block -->
             <div class="right-block">
               <div id="gameRightAnim1" class="btn-item">
-                <div class="button" @click="clickListener(ACTIONS.GAMEDETAILS)"> DETAILS </div>
+                <div id="gameRightDetails" class="button" @click="clickListener(ACTIONS.GAMEDETAILS)"> DETAILS </div>
               </div>
               <div id="gameRightAnim2" class="btn-item">
-                <div class="button" @click="clickListener(ACTIONS.GAMECONTROLS)"> CONTROLS </div>
+                <div id="gameRightControls" class="button" @click="clickListener(ACTIONS.GAMECONTROLS)"> CONTROLS </div>
               </div>
               <div id="gameRightAnim3" class="btn-item">
-                <div class="button" @click="clickListener(ACTIONS.GAMEPLAY)"> RANKING </div>
+                <div id="gameRightRanking" class="button" @click="clickListener(ACTIONS.GAMERANKING)"> RANKING </div>
               </div>
 
               <div id="gameDetailsBlock" class="details-block page--hide">
@@ -733,7 +835,15 @@
                 </div>
               </div>
               <div id="gameControlsBlock" class="controls-block page--hide">
-                Controls
+                <div class="content">
+                  <div class="title">CONTROLS</div>
+                  <div class="main-block">
+                    <div class="controls-btn up">UP</div>
+                    <div class="controls-btn left">LEFT</div>
+                    <div class="controls-btn down">DOWN</div>
+                    <div class="controls-btn right">RIGHT</div>
+                  </div>
+                </div>
               </div>
               
             </div>

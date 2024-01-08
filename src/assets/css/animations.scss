@@ -136,6 +136,12 @@
     animation-duration: 3s; // 持續時間
     animation-fill-mode: forwards;
   }
+  .page--alphaIn {
+    opacity: 0;
+    animation-name: alpha_in; // 動畫名稱
+    animation-duration: 3s; // 持續時間
+    animation-fill-mode: forwards;
+  }
   // 淡出
   .page--alphaOut {
     opacity: 1;

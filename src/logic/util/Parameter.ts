@@ -9,7 +9,12 @@ export const ACTIONS = {
 
   GAMEDETAILS: 'game_details_btn', 
   GAMECONTROLS: 'game_controls_btn', 
-  GAMERANKING: 'game_ranking_btn', 
+  GAMERANKING: 'game_ranking_btn',
+
+  CONTROLSUP: 'controls_up',
+  CONTROLSLEFT: 'controls_left',
+  CONTROLSDOWN: 'controls_down',
+  CONTROLSRIGHT: 'controls_right',
 
   INDEX: 'go_index',
   SAMPLE: 'go_sample',

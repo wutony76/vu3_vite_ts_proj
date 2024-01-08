@@ -155,6 +155,105 @@
               animation: anim_intro 1s 0.7s forwards infinite;
             }
           }
+
+          // RANKING資訊
+          .ranking-block {
+            width: 250px;
+            height: 300px;
+
+            position: absolute;
+            top: -150px;
+            left: -200px;
+            text-align: left;
+            border: 7px solid #093609;
+            border-radius: 3px;
+            .title {
+              color: #009b00;
+              font-size: 20px;
+              font-weight: 900;
+              text-align: right;
+              position: absolute;
+              width: 100%;
+              top: -6px;
+            }
+            .main-block {
+              margin-top: 25px;
+              height: 240px;
+              // border: 1px solid #ff0000;
+              display: grid;
+              grid-template-columns: auto auto auto auto;
+
+              .item {
+                width: 60px;
+                padding-left: 7px;
+                color: #009b00;
+
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+              }
+            }
+            .footer {
+              width: 100%;
+              position: absolute; 
+              bottom: 0px;
+              text-align: center;
+              color:#00ff00;
+            }
+          }
+          // CONTACT US
+          .contact-block {
+            position: absolute;
+            width: 350px;
+            // top: 190px;
+            // left: -330px;
+            top: 190px;
+            left: -225px;
+
+            .title {
+              color: #0ce80c;
+              text-align: center;
+              font-size: 12px;
+            }
+            .title.self {
+              letter-spacing: unset;
+            }
+
+            .main-block {
+              font-weight: 200;
+              color: #00ff00;
+              .caption {
+                font-size: 14px;
+                text-align: left;
+
+                .self {
+                  letter-spacing: unset;
+                }
+              }
+              .info-block {
+                margin-top: 7px;
+                font-size: 13px;
+                padding-left: 120px;
+                text-align: right;
+                font-weight: bold;
+                position: relative;
+                color:#0d3609;
+
+                .email {
+                  color:#00ff00;
+                  position: relative;
+                }
+                .facebook {
+                  position: relative;
+                }
+                .linkein {
+                  position: relative;
+                }
+              }
+              
+            }
+
+          }
         }
         .right-block {
           position: relative;
@@ -198,9 +297,10 @@
             }
           }
 
+          // details資訊
           .details-block {
             position: absolute;
-            top: -250px;
+            top: -265px;
             right: -150px;
             width: 300px;
             text-align: left;
@@ -213,23 +313,66 @@
               }
             }
           }
-
+          // controls資訊
           .controls-block {
             position: absolute;
-            top: -250px;
-            right: -150px;
-            width: 300px;
+            // top: -70px;
+            // right: -170px;
+            // top: -85px;
+            top: -40px;
+            right: -180px;
             text-align: left;
+            border: 10px solid #093609;
+            border-radius: 3px;
+
             .content {
+              padding: 5px 20px;
+              .title {
+                color: #00ff00;
+                text-align: center;
+              }
+              .main-block {
+                margin-top: 20px;
+                padding: 5px;
+                display: grid;
+                grid-template-columns: auto auto auto;
+                grid-template-rows: auto auto;
+                grid-column-gap: 5px;
+                grid-row-gap: 5px;
+
+                .controls-btn {
+                  width:55px;
+                  height:55px;
+                  font-size: 12px;
+                  text-align: right;
+                  border: 1px solid rgba(0, 255, 0, 0.2);
+                  border-radius: 3px;
+                  color:rgba(0, 255, 0, 0.2);
+                  display: flex;
+                  align-items: end;
+                  justify-content: end;
+                  cursor: pointer;
+
+                  &:hover {
+                    color:#00ff00;
+                    border-color: #00ff00;
+                  }
+                }
+                // grid postion 定位
+                .up {
+                  grid-column: 2/3;
+                }
+                .left {
+                  grid-column: 1/2;
+                }
+              }
 
             }
           }
 
-
           .main-block {
-            border: 1px solid #00ff00;
-            border-radius: 3px;
-
+            // border: 1px solid #00ff00;
+            // border-radius: 3px;
           }
         }
       }
