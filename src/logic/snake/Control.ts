@@ -23,6 +23,10 @@ export default class Control {
     }
   }
 
+  set event(val:string|null) {
+    this.clickEvent = val
+  }
+
   get event() {
     return this.clickEvent
   }

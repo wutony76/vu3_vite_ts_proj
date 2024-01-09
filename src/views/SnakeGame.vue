@@ -191,7 +191,16 @@
           animationStatus('infoCaptionLinkein', 'animation-right-btn-move', 2500)
         }, 5)
         break
+      
+      // CONTROLS
+      case ACTIONS.CONTROLSUP:
+      case ACTIONS.CONTROLSDOWN:
+      case ACTIONS.CONTROLSLEFT:
+      case ACTIONS.CONTROLSRIGHT:
+        selfGame?.updateControlEvent(actions)
+        break
 
+      //
       case ACTIONS.GAMEBACK:
       case ACTIONS.RELOAD:
       case ACTIONS.REPLAY:
@@ -461,7 +470,7 @@
     Splitting()
   }) 
   onBeforeUnmount(() => {
-    console.log('ttt.onBeforeUnmount')
+    // console.log('ttt.onBeforeUnmount')
   })
   changeGameStatus( state.gameStatus)
 </script>
@@ -863,10 +872,22 @@
                 <div class="content">
                   <div class="title">CONTROLS</div>
                   <div class="main-block">
-                    <div class="controls-btn up">UP</div>
-                    <div class="controls-btn left">LEFT</div>
-                    <div class="controls-btn down">DOWN</div>
-                    <div class="controls-btn right">RIGHT</div>
+                    <div class="controls-btn up"
+                      :class="[state.controlStatus === ACTIONS.CONTROLSUP? 'isSelect':'']"
+                      @click="clickListener(ACTIONS.CONTROLSUP)"
+                    >UP</div>
+                    <div class="controls-btn left"
+                      :class="[state.controlStatus === ACTIONS.CONTROLSLEFT ? 'isSelect' : '']"
+                      @click="clickListener(ACTIONS.CONTROLSLEFT)"
+                    >LEFT</div>
+                    <div class="controls-btn down"
+                      :class="[state.controlStatus === ACTIONS.CONTROLSDOWN ? 'isSelect' : '']"
+                      @click="clickListener(ACTIONS.CONTROLSDOWN)"
+                    >DOWN</div>
+                    <div class="controls-btn right"
+                      :class="[state.controlStatus === ACTIONS.CONTROLSRIGHT ? 'isSelect' : '']"
+                      @click="clickListener(ACTIONS.CONTROLSRIGHT)"
+                    >RIGHT</div>
                   </div>
                 </div>
               </div>
@@ -881,7 +902,7 @@
           <div class="status-block">
             <h5 id="gameTitleAnim2">
               {{ state.showStatus }}
-              - {{ state.controlStatus }}
+              <!-- - {{ state.controlStatus }} -->
             </h5>
           </div>
 

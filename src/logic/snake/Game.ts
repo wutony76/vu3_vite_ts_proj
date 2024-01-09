@@ -11,6 +11,7 @@ export default class Game {
   direction:string|null = null
   distance = 10 // number
   isLive: boolean
+  // clickControl: any // control.function
   callback: any // 遊戲結束.callback
   status: string = GAMESTATUS.NONE
   // score = 0
@@ -51,7 +52,25 @@ export default class Game {
   }
 
   setCallback (cb: any) {
-    if (cb) this.callback = cb 
+    if (cb) this.callback = cb
+  }
+  // 外部.CLICK 控制項
+  updateControlEvent (controlStatus: string) {
+    switch (controlStatus) {
+      case ACTIONS.CONTROLSUP:
+        this.direction = EVENTS.UP 
+        break
+      case ACTIONS.CONTROLSDOWN:
+        this.direction = EVENTS.DOWN 
+        break
+      case ACTIONS.CONTROLSLEFT:
+        this.direction = EVENTS.LEFT 
+        break
+      case ACTIONS.CONTROLSRIGHT:
+        this.direction = EVENTS.RIGHT 
+        break
+    }
+    this.control.event = null // keyboard val = null
   }
   updateStatus (changeStatus: string) {
     this.status = changeStatus 
@@ -81,17 +100,16 @@ export default class Game {
     }
     this.checkEat(x, y)
 
-    // 方向
+    // KEYBORD方向
     const clickKey = this.control.event
     if (clickKey !== null) {
-      this.state.controlStatus = this.returnkeybordKeyToDirection(this.direction)
       this.direction = clickKey 
     }
+    // 刷新外部CONTROL資訊
+    this.state.controlStatus = this.returnkeybordKeyToDirection(this.direction)
     console.log('direction = ', this.direction)
-
-    // 計算
+    // 計算SCORE
     this.state.score = this.clacScore(this.snake.bodies.length - 1)
-    console.log('score', this.state.score)
 
 
     // 重新指定snake的位置 
@@ -114,7 +132,7 @@ export default class Game {
   clacScore (processData: number) {
     const delta = processData - 20 
     let newScore = 0
-    if (delta > 0) newScore = (processData - 20) + delta * 3 
+    if (delta > 0) newScore = 20 + delta * 3 
     else newScore = processData 
     return newScore 
   }
