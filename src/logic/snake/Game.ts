@@ -103,7 +103,8 @@ export default class Game {
     this.state.controlStatus = this.returnkeybordKeyToDirection(this.direction)
     console.log('direction = ', this.direction)
     // 計算SCORE
-    this.state.score = this.clacScore(this.snake.bodies.length - 1)
+    this.state.score = this.calcScore(this.snake.bodies.length - 1)
+    this.state.level = this.calcLevel(this.snake.bodies.length - 1)
 
     // 重新指定snake的位置 
     try {
@@ -114,7 +115,7 @@ export default class Game {
       this.isLive = false
       if (this.callback) this.callback()
     }
-    this.isLive && this.status === GAMESTATUS.PLAYING && setTimeout(this.run.bind(this), 1000)
+    this.isLive && this.status === GAMESTATUS.PLAYING && setTimeout(this.run.bind(this), this.returnTimeout())
   }
   checkEat(x:number, y:number) {
     if (x === this.food.x && y === this.food.y) {
@@ -122,12 +123,47 @@ export default class Game {
       this.food.change()
     }
   }
-  clacScore (processData: number) {
+  calcScore (processData: number) {
     const delta = processData - 20 
     let newScore = 0
     if (delta > 0) newScore = 20 + delta * 3 
     else newScore = processData 
     return newScore 
+  }
+  calcLevel (processData: number) {
+    let newLevel = 1 
+    if (processData >= 90 ) newLevel = 6 
+    else if (processData >= 50 ) newLevel = 5
+    else if (processData >= 30 ) newLevel = 4 
+    else if (processData >= 15 ) newLevel = 3 
+    else if (processData >= 5 ) newLevel = 2
+    return newLevel 
+  }
+  returnTimeout () {
+    const defTimeout = 1000
+    let timeOut = defTimeout
+
+    switch (this.state.level) {
+      case 2:
+        timeOut = 900
+        break
+      case 3:
+        timeOut = 800
+        break
+      case 4:
+        timeOut = 700
+        break
+      case 5:
+        timeOut = 600
+        break
+      case 6:
+        timeOut = 500
+        break
+      default:
+        timeOut = defTimeout
+        break
+    }
+    return timeOut
   }
   returnkeybordKeyToDirection (keybordKey:string|null) {
     let direction = '' 

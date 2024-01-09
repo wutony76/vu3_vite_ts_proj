@@ -936,7 +936,7 @@
               <div class="block">
                 LEVEL
                 <span class="semicolon">:</span>
-                <span id="level">1</span>
+                <span id="level">{{ state.level }}</span>
               </div>
             </div>
             <i id="scanLight" class="scan"></i>
