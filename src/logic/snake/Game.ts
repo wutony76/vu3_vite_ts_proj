@@ -11,26 +11,22 @@ export default class Game {
   direction:string|null = null
   distance = 10 // number
   isLive: boolean
-  // clickControl: any // control.function
   callback: any // 遊戲結束.callback
   status: string = GAMESTATUS.NONE
-  // score = 0
-  // level = 1
-  state: any
+  state: any // 外部參數
 
   constructor (state: any) {
     this.food = new Food()
-    this.snake = new Snake()
+    this.snake = new Snake(this)
     this.control = new Control(this)
     this.isLive = false
-    this.state = state
+    this.state = state 
     this.init()
   }
 
   logPrint (msg:any) {
     console.log('Snake-Game ', msg)
   }
-
   init () {
     this.isLive = true
     this.direction = EVENTS.RIGHT
@@ -50,7 +46,6 @@ export default class Game {
       this.run()
     })
   }
-
   setCallback (cb: any) {
     if (cb) this.callback = cb
   }
@@ -78,6 +73,7 @@ export default class Game {
 
   run () {
     this.logPrint('run, ' + this.status)
+
     if (!this.isLive) return
     if (this.status !== GAMESTATUS.PLAYING) return
 
@@ -100,17 +96,14 @@ export default class Game {
     }
     this.checkEat(x, y)
 
-    // KEYBORD方向
+    // KEYBOARD方向
     const clickKey = this.control.event
-    if (clickKey !== null) {
-      this.direction = clickKey 
-    }
+    if (clickKey !== null) this.direction = clickKey 
     // 刷新外部CONTROL資訊
     this.state.controlStatus = this.returnkeybordKeyToDirection(this.direction)
     console.log('direction = ', this.direction)
     // 計算SCORE
     this.state.score = this.clacScore(this.snake.bodies.length - 1)
-
 
     // 重新指定snake的位置 
     try {
@@ -136,7 +129,7 @@ export default class Game {
     else newScore = processData 
     return newScore 
   }
-  returnkeybordKeyToDirection (keybordKey:string) {
+  returnkeybordKeyToDirection (keybordKey:string|null) {
     let direction = '' 
     switch(keybordKey) {
       case EVENTS.UP:

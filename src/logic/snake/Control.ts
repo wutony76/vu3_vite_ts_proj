@@ -5,7 +5,6 @@ export default class Control {
   clickEvent: string|null
 
   constructor (game:any) {
-    console.log('*****', game, game.direction)
     this.parentGame = game
     this.clickEvent = null
   }
@@ -13,9 +12,8 @@ export default class Control {
   init () {
     document.addEventListener('keydown', this.keydownHandler.bind(this))
   }
-
   keydownHandler(event:KeyboardEvent) {
-    console.log('keybord >> ', event.key)
+    // console.log('keybord >> ', event.key)
     switch (event.key) {
       case EVENTS.UP:
       case EVENTS.DOWN:
@@ -30,9 +28,7 @@ export default class Control {
   set event(val:string|null) {
     this.clickEvent = val
   }
-
   get event() {
     return this.clickEvent
   }
-
 }
