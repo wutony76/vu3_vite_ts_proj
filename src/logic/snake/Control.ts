@@ -1,9 +1,12 @@
 import {EVENTS} from '@/logic/snake/Parameter'
 
 export default class Control {
+  parentGame: any
   clickEvent: string|null
 
-  constructor () {
+  constructor (game:any) {
+    console.log('*****', game, game.direction)
+    this.parentGame = game
     this.clickEvent = null
   }
 
@@ -19,6 +22,7 @@ export default class Control {
       case EVENTS.LEFT:
       case EVENTS.RIGHT:
         this.clickEvent = event.key
+        this.parentGame.direction = this.clickEvent 
         break
     }
   }

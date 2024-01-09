@@ -21,7 +21,7 @@ export default class Game {
   constructor (state: any) {
     this.food = new Food()
     this.snake = new Snake()
-    this.control = new Control()
+    this.control = new Control(this)
     this.isLive = false
     this.state = state
     this.init()
