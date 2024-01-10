@@ -105,6 +105,7 @@ export default class Game {
     // 計算SCORE
     this.state.score = this.calcScore(this.snake.bodies.length - 1)
     this.state.level = this.calcLevel(this.snake.bodies.length - 1)
+    this.state.snakeLen = this.snake.bodies.length - 1 // 結算
 
     // 重新指定snake的位置 
     try {
@@ -123,6 +124,7 @@ export default class Game {
     if (x === this.food.x && y === this.food.y) {
       this.snake.addBody()
       this.food.change()
+      this.state.fruitCount ++
     }
   }
   calcScore (processData: number) {

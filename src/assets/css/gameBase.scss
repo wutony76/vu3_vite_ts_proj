@@ -614,6 +614,9 @@ body {
     }
   }
   // RESULT狀態
+  .all-mask.result-status.all-mask {
+    background: rgba(0, 0, 0, 0.95);
+  }
   .all-mask.result-status {
     .main {
       .special-box {
@@ -628,7 +631,7 @@ body {
       }
       .list-block {
         width: 350px;
-        margin: 45px auto;
+        margin: 35px auto;
 
         .item {
           margin-bottom: 5px;
@@ -648,10 +651,10 @@ body {
         }
 
       }
-      .button-bar {
-        margin-top: unset;
-      }
 
+      .button-bar {
+        margin-top: 42px;
+      }
       .result-bar {
         button:first-child {
           margin-right: 110px;
@@ -659,10 +662,14 @@ body {
             border-color: #00ff00;
           }
         }
-        // button:hover {
-        //   border: 1px solid #00ff00;
-        //   border-color: #00ff00;
-        // }
+        .exit-button {
+          color: #0b0808;
+          border: 1px solid #ff000036;
+          &:hover {
+            color: #ff0000;
+            border-color: #ff0000;
+          }
+        }
       }
     }
   }

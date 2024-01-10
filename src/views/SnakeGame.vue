@@ -37,6 +37,8 @@
     },
     score: 0,
     level: 1,
+    snakeLen: 0,
+    fruitCount: 0,
   })
 
   // const getRandom = (min:number, max:number) => {
@@ -757,29 +759,27 @@
           <div class="list-block">
             <div class="item">
               <div class="label">SCORE</div>
-              <div class="score">0</div>
+              <div class="score">{{ state.score }}</div>
             </div>
-
             <div class="item">
               <div class="label">LEVEL</div>
-              <div class="score">0</div>
+              <div class="score">{{ state.level }}</div>
             </div>
-
             <div class="item">
               <div class="label">SNAKELEN</div>
-              <div class="score">0</div>
+              <div class="score">{{ state.snakeLen }}</div>
             </div>
-
             <div class="item">
-              <div class="label">FRUITS</div>
-              <div class="score">0</div>
+              <div class="label">FRUIT</div>
+              <div class="score">{{ state.fruitCount }}</div>
             </div>
-
           </div>
 
           <div class="button-bar result-bar">
             <button id="rePlayBtn" @click="clickListener(ACTIONS.REPLAY)">AGAIN</button>
-            <button id="exitGameBtn" @click="clickListener(ACTIONS.EXIT)">EXIT</button>
+            <button id="exitGameBtn"
+              class="exit-button"
+              @click="clickListener(ACTIONS.EXIT)">EXIT</button>
           </div>
         </div>
       </div>
