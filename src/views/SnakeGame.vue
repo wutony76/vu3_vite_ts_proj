@@ -102,7 +102,13 @@
         }
         break
       case ACTIONS.GAMERESULT:
+
+          selfGame?.updateStatus(GAMESTATUS.PAUSE)
           state.showStatus = VIEWS.RESULT
+          state.gameStatus = GAMESTATUS.RESULT
+          setTimeout(() => {
+            changeGameStatus(state.gameStatus)
+          })
         break
 
       case ACTIONS.GAMEDETAILS:
@@ -744,11 +750,36 @@
       <div class="result-status all-mask" v-if="state.viewResultVisible">
         <div class="main">
           <div class="header special-box">
-            <div class="title" data-splitting="lines"> RESULT </div>
+            <div class="title headline self" data-splitting="lines"> RESULT </div>
+            <div class="title2 headline self" data-splitting="lines"> CLICK AGAIN CAN RESTART PLAY </div>
           </div>
+
+          <div class="list-block">
+            <div class="item">
+              <div class="label">SCORE</div>
+              <div class="score">0</div>
+            </div>
+
+            <div class="item">
+              <div class="label">LEVEL</div>
+              <div class="score">0</div>
+            </div>
+
+            <div class="item">
+              <div class="label">SNAKELEN</div>
+              <div class="score">0</div>
+            </div>
+
+            <div class="item">
+              <div class="label">FRUITS</div>
+              <div class="score">0</div>
+            </div>
+
+          </div>
+
           <div class="button-bar result-bar">
-            <button id="rePlayBtn" @click="clickListener(ACTIONS.REPLAY)">重新開始</button>
-            <button id="exitGameBtn" @click="clickListener(ACTIONS.EXIT)">離開遊戲</button>
+            <button id="rePlayBtn" @click="clickListener(ACTIONS.REPLAY)">AGAIN</button>
+            <button id="exitGameBtn" @click="clickListener(ACTIONS.EXIT)">EXIT</button>
           </div>
         </div>
       </div>
@@ -777,7 +808,7 @@
                 </div>
               </div>
               <div id="gameAnim5" class="btn-item">
-                <div class="button">
+                <div class="button" @click="clickListener(ACTIONS.GAMERESULT)">
                   GAME <span class="space"></span> RESULT
                 </div> 
               </div>

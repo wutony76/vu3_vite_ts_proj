@@ -72,8 +72,7 @@ export default class Game {
   }
 
   run () {
-    this.logPrint('run, ' + this.status)
-
+    this.logPrint('run, ' + this.status + ', ' + this.returnTimeout())
     if (!this.isLive) return
     if (this.status !== GAMESTATUS.PLAYING) return
 
@@ -101,7 +100,8 @@ export default class Game {
     if (clickKey !== null) this.direction = clickKey 
     // 刷新外部CONTROL資訊
     this.state.controlStatus = this.returnkeybordKeyToDirection(this.direction)
-    console.log('direction = ', this.direction)
+    // console.log('direction = ', this.direction)
+
     // 計算SCORE
     this.state.score = this.calcScore(this.snake.bodies.length - 1)
     this.state.level = this.calcLevel(this.snake.bodies.length - 1)
@@ -117,6 +117,8 @@ export default class Game {
     }
     this.isLive && this.status === GAMESTATUS.PLAYING && setTimeout(this.run.bind(this), this.returnTimeout())
   }
+
+  // 
   checkEat(x:number, y:number) {
     if (x === this.food.x && y === this.food.y) {
       this.snake.addBody()
@@ -183,5 +185,4 @@ export default class Game {
     }
     return direction 
   }
-
 }

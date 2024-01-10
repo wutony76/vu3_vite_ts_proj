@@ -616,8 +616,40 @@ body {
   // RESULT狀態
   .all-mask.result-status {
     .main {
+      .special-box {
+        .title {
+          font-size: 60px;
+          letter-spacing: 5px;
+        }
+        .title2 {
+          margin-top: 15px;
+          font-size: 12px;
+        }
+      }
+      .list-block {
+        width: 350px;
+        margin: 45px auto;
+
+        .item {
+          margin-bottom: 5px;
+          display: grid;
+          grid-template-columns: auto auto;
+
+          font-size: 25px;
+          color: #00ff00;
+          padding-right: 50px;
+          .label {
+            font-weight: 600;
+          }
+          
+          .score {
+            text-align: right;
+          }
+        }
+
+      }
       .button-bar {
-        margin-top: 100px;
+        margin-top: unset;
       }
 
       .result-bar {

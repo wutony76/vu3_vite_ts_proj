@@ -96,6 +96,11 @@ export default class Snake {
   // 'afterend'：元素自身的后面。
   addBody() {
     this.snake.insertAdjacentHTML("beforeend", "<div></div>")
+
+    const bodyElementEnd:HTMLElement = this.bodies[this.bodies.length - 1] as HTMLElement
+    const bodyElementSecondLast:HTMLElement = this.bodies[this.bodies.length - 2] as HTMLElement
+    bodyElementEnd.style.left = bodyElementSecondLast.offsetLeft + 'px' 
+    bodyElementEnd.style.top = bodyElementSecondLast.offsetTop + 'px' 
   }
   moveBody() {
     /*
@@ -113,6 +118,8 @@ export default class Snake {
       const fontBodyY:number = bodyElementFont.offsetTop
       bodyElement.style.left = fontBodyX + 'px' 
       bodyElement.style.top = fontBodyY + 'px' 
+
+      this.parentGame.checkEat(fontBodyX, fontBodyY) // 身體吃到東西
     }
   }
   checkSelfBody() {
