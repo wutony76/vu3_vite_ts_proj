@@ -295,9 +295,9 @@
 
       case ACTIONS.SAMPLE:
         animationStatus('waittingPage', 'page--alphaOut', 100)
-        setTimeout(() => {
-          router.replace({path:"/splitting"})
-        }, 1000)
+        // setTimeout(() => {
+        //   router.replace({path:"/splitting"})
+        // }, 1000)
         break
       case ACTIONS.START:
         animationStatus('waittingPage', 'page--alphaOut', 100)
