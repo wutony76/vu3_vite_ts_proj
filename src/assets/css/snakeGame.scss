@@ -103,6 +103,11 @@
     .opacityAlpha1 {
       opacity: 1;
     }
+    .opacityCharAlpha0 {
+      .char {
+        opacity: 0;
+      }
+    }
 
     .game-center {
       width: 500px;

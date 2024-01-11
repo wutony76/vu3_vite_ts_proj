@@ -387,8 +387,31 @@
         animationRemoveClass('scanLight', 'animation-scan-lights')
         state.showStatus = VIEWS.RESULT
         state.viewResultVisible = true
-        animationStatus('rePlayBtn', 'button--alpha', 3000)
-        animationStatus('exitGameBtn', 'button--alpha', 3000)
+
+        setTimeout(() => {
+          animationStatus('resultStatusTitleAnim01', 'opacityCharAlpha0', 10)
+          animationStatus('resultStatusTitleAnim01', 'headline--self001', 300)
+          animationStatus('resultStatusTitleAnim02', 'opacityCharAlpha0', 10)
+          animationStatus('resultStatusTitleAnim02', 'headline--self001', 10)
+
+          //resultItemAnim01
+          animationStatus('resultItemAnim01', 'opacityAlpha0', 10)
+          animationStatus('resultItemAnim01', 'opacityAlpha1', 500)
+          animationStatus('resultItemAnim01', 'animation-right-btn-move', 500)
+          animationStatus('resultItemAnim02', 'opacityAlpha0', 10)
+          animationStatus('resultItemAnim02', 'opacityAlpha1', 1000)
+          animationStatus('resultItemAnim02', 'animation-right-btn-move', 1000)
+          animationStatus('resultItemAnim03', 'opacityAlpha0', 10)
+          animationStatus('resultItemAnim03', 'opacityAlpha1', 1500)
+          animationStatus('resultItemAnim03', 'animation-right-btn-move', 1500)
+          animationStatus('resultItemAnim04', 'opacityAlpha0', 10)
+          animationStatus('resultItemAnim04', 'opacityAlpha1', 2000)
+          animationStatus('resultItemAnim04', 'animation-right-btn-move', 2000)
+
+          // button
+          animationStatus('rePlayBtn', 'button--alpha', 2500)
+          animationStatus('exitGameBtn', 'button--alpha', 2500)
+        })
         break
     }
   }
@@ -749,27 +772,27 @@
         </div>
       </div>
       <!-- RESULT狀態  -->
-      <div class="result-status all-mask" v-if="state.viewResultVisible">
+      <div class="result-status all-mask" v-show="state.viewResultVisible">
         <div class="main">
           <div class="header special-box">
-            <div class="title headline self" data-splitting="lines"> RESULT </div>
-            <div class="title2 headline self" data-splitting="lines"> CLICK AGAIN CAN RESTART PLAY </div>
+            <div id="resultStatusTitleAnim01" class="title headline self" data-splitting> RESULT </div>
+            <div id="resultStatusTitleAnim02" class="title2 headline self" data-splitting> CLICK AGAIN CAN RESTART PLAY </div>
           </div>
 
           <div class="list-block">
-            <div class="item">
+            <div id="resultItemAnim01" class="item">
               <div class="label">SCORE</div>
               <div class="score">{{ state.score }}</div>
             </div>
-            <div class="item">
+            <div id="resultItemAnim02" class="item">
               <div class="label">LEVEL</div>
               <div class="score">{{ state.level }}</div>
             </div>
-            <div class="item">
+            <div id="resultItemAnim03" class="item">
               <div class="label">SNAKELEN</div>
               <div class="score">{{ state.snakeLen }}</div>
             </div>
-            <div class="item">
+            <div id="resultItemAnim04" class="item">
               <div class="label">FRUIT</div>
               <div class="score">{{ state.fruitCount }}</div>
             </div>
@@ -780,6 +803,12 @@
             <button id="exitGameBtn"
               class="exit-button"
               @click="clickListener(ACTIONS.EXIT)">EXIT</button>
+          </div>
+
+          <div class="effectsBox">
+            <div class="snakeEffects">
+              <div class="header"></div>
+            </div>
           </div>
         </div>
       </div>

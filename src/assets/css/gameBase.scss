@@ -641,10 +641,11 @@ body {
           font-size: 25px;
           color: #00ff00;
           padding-right: 50px;
+          position: relative;
+
           .label {
             font-weight: 600;
           }
-          
           .score {
             text-align: right;
           }
@@ -663,7 +664,7 @@ body {
           }
         }
         .exit-button {
-          color: #0b0808;
+          color: #441811;
           border: 1px solid #ff000036;
           &:hover {
             color: #ff0000;
@@ -671,6 +672,31 @@ body {
           }
         }
       }
+
+      .effectsBox {
+        width: 430px;
+        height: 500px;
+
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, -90%);
+
+        .snakeEffects {
+          &>div {
+            width: 10px;
+            height: 10px;
+            background-color: rgb(0, 0, 0);
+            border: 1px solid #b7d4a8;
+            position: absolute;
+          }
+          
+            /* //蛇头是红色的，便于区分 */
+            &>div:first-child {
+              background-color: red;
+            }
+        }
+      }
+
     }
   }
   // READY狀態
