@@ -2,6 +2,7 @@
   import { onBeforeUnmount, onMounted, reactive, watch } from 'vue'
   import Splitting from 'splitting'
   import Game from '@/logic/snake/Game'
+  import Effects from '@/logic/effects/SnakeEffects'
   import { GAMESTATUS } from '@/logic/snake/Parameter'
   import { ACTIONS, VIEWS } from '@/logic/util/Parameter'
   import { useRouter } from 'vue-router'
@@ -393,7 +394,6 @@
           animationStatus('resultStatusTitleAnim01', 'headline--self001', 300)
           animationStatus('resultStatusTitleAnim02', 'opacityCharAlpha0', 10)
           animationStatus('resultStatusTitleAnim02', 'headline--self001', 10)
-
           //resultItemAnim01
           animationStatus('resultItemAnim01', 'opacityAlpha0', 10)
           animationStatus('resultItemAnim01', 'opacityAlpha1', 500)
@@ -407,10 +407,15 @@
           animationStatus('resultItemAnim04', 'opacityAlpha0', 10)
           animationStatus('resultItemAnim04', 'opacityAlpha1', 2000)
           animationStatus('resultItemAnim04', 'animation-right-btn-move', 2000)
-
           // button
           animationStatus('rePlayBtn', 'button--alpha', 2500)
           animationStatus('exitGameBtn', 'button--alpha', 2500)
+
+          // run.effects
+          setTimeout(() => {
+            new Effects()
+            animationStatus('resultEffectsBox', 'page--alphaIn', 10)
+          }, 2500)
         })
         break
     }
@@ -805,9 +810,28 @@
               @click="clickListener(ACTIONS.EXIT)">EXIT</button>
           </div>
 
-          <div class="effectsBox">
-            <div class="snakeEffects">
+          <div id="resultEffectsBox" class="effectsBox">
+            <div id="snakeEffects" class="snakeEffects">
               <div class="header"></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div id="snakeEffects2" class="snakeEffects">
+              <div class="header"></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
           </div>
         </div>

@@ -655,6 +655,8 @@ body {
 
       .button-bar {
         margin-top: 42px;
+        position: relative;
+        z-index: 10;
       }
       .result-bar {
         button:first-child {
@@ -680,20 +682,22 @@ body {
         position: relative;
         left: 50%;
         transform: translate(-50%, -90%);
+        // border: 1px solid #ff0000;
+        opacity: 0;
 
         .snakeEffects {
           &>div {
-            width: 10px;
-            height: 10px;
-            background-color: rgb(0, 0, 0);
-            border: 1px solid #b7d4a8;
+            width: 20px;
+            height: 20px;
+            background-color: #00ff00;
+            border: 1px solid #000;
             position: absolute;
           }
           
-            /* //蛇头是红色的，便于区分 */
-            &>div:first-child {
-              background-color: red;
-            }
+          /* //蛇头是红色的，便于区分 */
+          &>div:first-child {
+            background-color: #ffcc00;
+          }
         }
       }
 
