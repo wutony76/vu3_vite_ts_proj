@@ -49,7 +49,7 @@
         left: 0px;
         top: 0px;
         width: 100%;
-        height: calc(100% - 7px);
+        height: calc(100% - 9px);
         background: var(--nvbarColor);
         border-bottom: 1px solid #c533335e;
       }
@@ -72,6 +72,7 @@
           .logoBox {
             position: relative;
             z-index: 5;
+
             // --wordThicknessColor: #00ff74;
             // text-shadow:
             //   1px 1px var(--wordThicknessColor),

@@ -21,8 +21,10 @@ onMounted(() => {
     Animation.addClass('nvbarBlock', 'animation-down', 10)
 
     // logo
-    // ArtsEffect.thickness('logoBox', 7, '#b14c4a', '#2a0303')
-
+    Animation.addClass('logoBox', 'page--alphaIn', 500)
+    setTimeout(() => {
+      ArtsEffect.thickness('logoBox', 7, '#b14c4a', '#2a0303')
+    }, 300)
   })
 })
 
@@ -34,8 +36,8 @@ onMounted(() => {
       <div class="nvbarContainer">
         <div class="content-block">
 
-          <div class="logo">
-            <div id="logoBox" class="logoBox">
+          <div id="logoBox" class="logo">
+            <div class="logoBox">
               <span class="firstWord">H</span>
               <span class="appyWord">APPY</span>
               <span class="fatWord">FAT</span>
