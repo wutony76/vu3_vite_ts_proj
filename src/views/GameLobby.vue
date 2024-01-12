@@ -3,6 +3,7 @@ import Animation from '@/logic/util/Animation'
 import ArtsEffect from '@/logic/util/ArtsEffect'
 
 import { nextTick, onMounted } from 'vue'
+import Splitting from 'splitting'
 
 defineOptions({
   name: "GameLoddy",
@@ -12,7 +13,7 @@ defineOptions({
 
 onMounted(() => {
   console.log('onMounted')
-  // Splitting()
+  Splitting()
 
   nextTick(() => {
     console.log('nextTick')
@@ -22,6 +23,9 @@ onMounted(() => {
 
     // logo
     Animation.addClass('logoBox', 'page--alphaIn', 500)
+    Animation.addClass('appyWord', 'headline--self001', 1000)
+    Animation.addClass('yoyoWord', 'headline--self001', 1500)
+    // Animation.addClass('logoBox', 'page--alphaIn', 500)
     setTimeout(() => {
       ArtsEffect.thickness('logoBox', 7, '#b14c4a', '#2a0303')
     }, 300)
@@ -39,14 +43,18 @@ onMounted(() => {
           <div id="logoBox" class="logo">
             <div class="logoBox">
               <span class="firstWord">H</span>
-              <span class="appyWord">APPY</span>
+              <span id="appyWord" class="appyWord headline self" data-splitting>APPY</span>
               <span class="fatWord">FAT</span>
-              <span class="yoyoWord"> yoyo </span>
+              <span id="yoyoWord" class="yoyoWord headline self" data-splitting> yoyo </span>
             </div>
             <div class="line1"></div>
           </div>
-          <div class="logo1">LOGO</div>
-          <div class="logo2">LOGO</div>
+
+          <div class="settings">
+            <div class="listBox">
+              <span class="item"> settings </span>
+            </div>
+          </div>
 
         </div>
       </div>

@@ -72,6 +72,14 @@
           .logoBox {
             position: relative;
             z-index: 5;
+            .char {
+              opacity: 0;
+            }
+
+            .appyWord.self,
+            .yoyoWord.self {
+              letter-spacing: unset;
+            }
 
             // --wordThicknessColor: #00ff74;
             // text-shadow:
@@ -103,6 +111,7 @@
               left: 2px;
               font-size: 25px;
               letter-spacing: -4px;
+              z-index: 9;
             }
             .yoyoWord {
               position: absolute;
@@ -122,6 +131,15 @@
           }
 
           
+        }
+
+        .settings {
+          .listBox {
+            position: relative;
+            .item {
+              position: absolute ;
+            }
+          }
         }
       }
     }
