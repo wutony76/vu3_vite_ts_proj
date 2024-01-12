@@ -1,0 +1,231 @@
+// 遊戲大廳
+.gameLobby {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  --nvbarColor: #ffa0a0;
+  --nvbarColorBar: #ff7a78;
+  --bgLobbyColor:#ffeaea;
+
+  background: var(--bgLobbyColor);
+
+  .nvbar {
+    height: 70px;
+    background: var(--nvbarColorBar);
+    .nvbarContainer {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 0;
+      overflow: hidden;
+      // &::before {
+      //   content: '';
+      //   position: absolute;
+      //   z-index: -2;
+      //   left: 50%;
+      //   top: 50%;
+      //   transform: translate(-50%, -50%);
+      //   width: 150%;
+      //   height: 300%;
+      //   // background-color: var(--lightColor);
+      //   background-image: linear-gradient(to bottom,
+      //       rgba(255, 255, 255, 0),
+      //       rgba(255, 255, 241, 0.9),
+      //       rgba(255, 255, 255, 0));
+  
+      //   // box-shadow: 0 0 5px var(--lightColor),
+      //   //     0 0 25px var(--lightColor);
+      //   // background-repeat: no-repeat;
+      //   // background-size: 50% 50%;
+      //   // background-position: 0 0;
+      //   // background-image: conic-gradient(var(--lightColor), var(--lightColor));
+      //   animation: rotate 5s linear infinite;
+      // }
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: calc(100% - 7px);
+        background: var(--nvbarColor);
+        border-bottom: 1px solid #c533335e;
+      }
+
+      .content-block{
+        margin-top: 3px;
+        width: 100%;
+        height: 60px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo {
+          margin-left: 10px;
+          color: #fff;
+          font-weight: 900;
+          opacity: 0;
+
+          .logoBox {
+            position: relative;
+            z-index: 5;
+            // --wordThicknessColor: #00ff74;
+            // text-shadow:
+            //   1px 1px var(--wordThicknessColor),
+            //   2px 2px var(--wordThicknessColor),
+            //   3px 3px var(--wordThicknessColor),
+            //   4px 4px var(--wordThicknessColor),
+            //   5px 5px var(--wordThicknessColor),
+            //   6px 6px var(--wordThicknessColor);
+
+            .firstWord {
+              font-size: 35px;
+              color: #ff0000;
+              position: absolute;
+              top: -35px;
+              left: -15px;
+              transform: translate(50%, 50%) rotate(354deg);
+            }
+            .appyWord {
+              position: relative;
+              top: -8px;
+              left: 26px;
+              font-size: 20px;
+            }
+            .fatWord {
+              position: relative;
+              color: #fff900;
+              top: 2px;
+              left: 2px;
+              font-size: 25px;
+              letter-spacing: -4px;
+            }
+            .yoyoWord {
+              position: absolute;
+              top: 15px;
+              left: 24px;
+              font-size: 12px;
+            }
+          }
+          .line1 {
+            height: 1px;
+            width: 102px;
+            background: #2b0303;
+            position: absolute;
+            top: 47px;
+            z-index: 1;
+            transform: rotate(354deg);
+          }
+
+          
+        }
+      }
+    }
+  }
+}
+
+
+.effect2 {
+  --color: #0ebeff;
+
+  margin-top: 100px;
+
+}
+
+.btn-sample02 {
+  --color: #0ebeff;
+  display: flex;
+  .btn {
+    position: relative;
+    z-index: 0;
+    // width: 100%;
+    // height: 10px;
+    width: 160px;
+    height: 80px;
+    line-height: 80px;
+    color: var(--color);
+    font-size: 24px;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .3s;
+    -webkit-box-reflect: below 10px linear-gradient(transparent, rgba(0, 0, 0, .4));
+
+    &:hover {
+      color: #fff;
+      box-shadow: 0 0 5px var(--color),
+        0 0 25px var(--color);
+
+      &::after,
+      &::before {
+        transition: .3s;
+        background: var(--color);
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 150%;
+      height: 300%;
+      background-color: #000;
+      background-repeat: no-repeat;
+      background-size: 50% 50%;
+      background-position: 0 0;
+      background-image: conic-gradient(var(--color), var(--color));
+      animation: rotate 2s linear infinite;
+    }
+
+    // &::after {
+    //   content: '';
+    //   position: absolute;
+    //   z-index: -1;
+    //   left: 2px;
+    //   top: 2px;
+    //   width: calc(100% - 4px);
+    //   height: calc(100% - 4px);
+    //   background: #000;
+    //   border-radius: 10px;
+    // }
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: translate(-50%, -50%) rotate(1turn);
+    }
+  }
+  @keyframes popup {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    50% {
+      transform: scale(0.95);
+    }
+
+    80% {
+      transform: translateX(50px) translateY(50px) rotateY(70deg) scale(1.2) scaleY(.5);
+    }
+
+    100% {
+      transform: translateX(50px) translateY(50px) rotateY(70deg) scale(1);
+      opacity: 1;
+    }
+
+    // 0% { transform: scale(0); }
+    // 20% { transform: scale(1.1); }
+    // 50% { transform: scale(0.95); }
+    // 80% { transform: scale(1.05); }
+    // 100% { transform: scale(1); }
+  }
+}

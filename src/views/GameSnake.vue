@@ -10,7 +10,7 @@
   import ProgressBar from '@/components/Ui/ProgressBar.vue'
 
   defineOptions({
-    name: "SnakeGame",
+    name: "GameSnake",
     inheritAttrs: false,
   })
   const router = useRouter()
@@ -415,7 +415,7 @@
           setTimeout(() => {
             new Effects()
             animationStatus('resultEffectsBox', 'page--alphaIn', 10)
-          }, 2500)
+          }, 3000)
         })
         break
     }
@@ -1035,7 +1035,7 @@
 </template>
 
 <style lang="scss">
-  @import "../assets/css/gameBase.scss";
-  @import "../assets/css/snakeGame.scss";
-  @import "../assets/css/animations.scss";
+  @import "../assets/css/game/gameBase.scss";
+  @import "../assets/css/gameSnake/snakeGame.scss";
+  @import "../assets/css/game/animations.scss";
 </style>
