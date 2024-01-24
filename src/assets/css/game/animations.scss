@@ -196,18 +196,51 @@
       }
     }
   }
+  .button--float {
+    // .char {
+      --name: float;
+      --dur: 2200ms;
+      --del: calc(var(--char-index) * -0.5s);
+      --tf: ease-in-out;
+      --dir: alternate;
+
+      &:nth-child(2n) {
+        --name: float-alt;
+      }
+    // }
+  }
 
   .animation-intro {
     animation: intro_box 1s 1s forwards;
   }
 
   // 往下彈出
-  .animation-down {
+  .animation-block-down {
     animation: jump_down;
     animation-duration: 0.3s; // 持續時間
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
   }
+  .animation-block-right {
+    animation: jump_right;
+    animation-duration: 0.7s; // 持續時間
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+  }
+  .animation-block-left {
+    animation: jump_right;
+    animation-duration: 0.4s; // 持續時間
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+  }
+  .animation-block-down {
+    animation: jump_block_down;
+    // animation: jump_block_down;
+    animation-duration: 0.4s; // 持續時間
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+  }
+
 
   .animation-move-left {
     animation: move_left;
@@ -345,6 +378,30 @@
     90% { transform: translateY(10px) scaleY(0.98); }
     100% { transform: translateY(0px) scaleY(1); }
   }
+  @keyframes jump_block_down {
+    0% {
+      transform: scaleY(0);
+      opacity: 1;
+    }
+    60% { transform: scaleY(2.3); }
+    70% { transform: scaleY(0.89); }
+    80% { transform: scaleY(1.2); }
+    90% { transform: translateY(10px) scaleY(0.98); }
+    100% {
+      transform: translateY(0px) scaleY(1);
+      opacity: 1;
+    }
+  }
+  @keyframes jump_right {
+    0% { transform: scaleX(0); }
+    // 50% { transform: scaleX(0.2);}
+    60% { transform: scaleX(1.5); }
+    70% { transform: scaleX(0.89); }
+    80% { transform: scaleX(1.2); }
+    90% { transform: scaleX(0.98); }
+    100% { transform: scaleX(1); }
+  }
+
 
   // 左邊移動 
   @keyframes move_left {

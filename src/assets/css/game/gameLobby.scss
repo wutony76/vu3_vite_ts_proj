@@ -7,12 +7,14 @@
   --nvbarColor: #ffa0a0;
   --nvbarColorBar: #ff7a78;
   --bgLobbyColor:#ffeaea;
+  --bannerColor: #f6ae78;
 
   background: var(--bgLobbyColor);
 
   .nvbar {
     height: 70px;
     background: var(--nvbarColorBar);
+
     .nvbarContainer {
       width: 100%;
       height: 100%;
@@ -69,9 +71,15 @@
           font-weight: 900;
           opacity: 0;
 
+          // position: relative;
+          // z-index: 999; 
+          // transform: scale(1.5) rotate(348deg);
+          // top: 5px;
+          // left: 30px;
+
+
           .logoBox {
             position: relative;
-            z-index: 5;
             .char {
               opacity: 0;
             }
@@ -112,6 +120,47 @@
               font-size: 25px;
               letter-spacing: -4px;
               z-index: 9;
+              opacity: 0;
+              .char {
+                opacity: 1;
+              }
+
+              // FAT 字樣特效
+              .char:nth-child(1) {
+                // z-index: 15;
+              }
+              .char:nth-child(2) {
+                transform: translateX(-13px);
+                opacity: 0;
+                // z-index: 14;
+                animation-name: char_move1;
+                animation-delay: 4s;
+                animation-duration: 0.3s;
+                animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+                animation-fill-mode: forwards;
+                animation-iteration-count: 1;
+              }
+              .char:nth-child(3) {
+                transform: translateX(-25px);
+                opacity: 0;
+                // z-index: 13;
+                animation-name: char_move1;
+                animation-delay: 4.5s;
+                animation-duration: 0.3s;
+                animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+                animation-fill-mode: forwards;
+                animation-iteration-count: 1;
+              }
+
+              @keyframes char_move1 {
+                0% {
+                  opacity: 0;
+                }
+                100% {
+                  opacity: 1;
+                  transform: translateX(0px);
+                }
+              }
             }
             .yoyoWord {
               position: absolute;
@@ -120,7 +169,9 @@
               font-size: 12px;
             }
           }
+
           .line1 {
+            display: none;
             height: 1px;
             width: 102px;
             background: #2b0303;
@@ -128,30 +179,343 @@
             top: 47px;
             z-index: 1;
             transform: rotate(354deg);
+
+            &::before {
+              content: '';
+              position: absolute;
+              left: -5px;
+              top: -10px;
+              width: 150%;
+              height: 23px;
+              background: var(--nvbarColor);
+              transform: rotate(6deg);
+            }
+
+            // .logo-line-move {
+            //   animation-name: line_move1; // 動畫名稱
+            //   animation-duration: 1s; // 持續時間
+            //   animation-fill-mode: forwards;
+            //   animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+            // }
+            @keyframes line_move1 {
+              0% {
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+                transform: translateX(0px);
+              }
+            }
           }
 
-          
         }
 
         .settings {
+          margin-right: 15px;
           .listBox {
+            // border: 1px solid #ff0000;
             position: relative;
-            .item {
-              position: absolute ;
+            top:18px;
+
+            .setting-text {
+              font-weight: 900;
+              font-size: 25px;
+              color: var(--nvbarColorBar);
+              cursor: pointer;
+              letter-spacing: -3px;
+
+              // position: relative;
+              // top: 8px;
+              position: absolute;
+              top: -10px;
+              right: 0px;
+
+              &:hover {
+                animation-name: nvbar-hover; // 動畫名稱
+                animation-duration: 0.3s; // 持續時間
+                animation-fill-mode: forwards;
+                animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+                @keyframes nvbar-hover {
+                  20% {
+                    top: -40px; 
+                    transform: scaleY(2.3);
+                  } 
+                  100% { top: -18px; }
+                }
+              }
             }
           }
         }
+
+      }
+
+      .footer {
+        height: 9px;
+        background: var(--nvbarColorBar);
+        position: relative;
+        top: -2px;
       }
     }
+  }
+
+  .main {
+    .header {
+      display: flex;
+
+      .bannerBlock {
+        height: 200px;
+        width: 65%;
+        background: var(--bannerColor);
+        padding: 10px;
+        position: relative;
+        transform-origin: left 50%;
+        transform: scale(0);
+        margin-right: 15px;
+        .content-block {
+          width: 100%;
+          height: 100%;
+          border: 5px solid #fcffc6;
+          border-radius: 15px;
+          position: relative;
+          z-index: 1;
+        }
+        .item.setting-text {
+          position: absolute;
+          top: 52px;
+          right: -78px;
+          transform: rotate(90deg);
+          font-weight: 900;
+          font-size: 30px;
+          color: var(--bannerColor);
+          letter-spacing: -3px;
+          cursor: default;
+    
+          &:hover {
+            animation-name: banner-hover; // 動畫名稱
+            animation-duration: 0.3s; // 持續時間
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+    
+            @keyframes banner-hover {
+              20% {
+                right: -110px;
+                transform: scaleX(2.3) rotate(90deg);
+              }
+    
+              100% {
+                right: -88px;
+                transform: rotate(90deg);
+              }
+            }
+          }
+        }
+        .footer {
+          width: 200px;
+          height: 20px;
+          background: var(--bannerColor);
+          transform: rotate(90deg);
+          position: absolute;
+          top: 90px;
+          right: -89px;
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          z-index: -1;
+          left: 0px;
+          top: 0px;
+          width: calc(100% - 20px);
+          height: 100%;
+          background-image: linear-gradient(to right, #ff6a6a, #ffbc76);
+        }
+      }
+    
+      .contactBlock {
+        height: 200px;
+        width: 35%;
+        position: relative;
+        --contactColor: #57b0ff;
+
+        .content-block {
+          height: 190px;
+          width: 130px;
+          background: var(--contactColor);
+          transform-origin: right 50%;
+          position: absolute;
+          top: 30px;
+          right: 0px;
+          transform: scaleX(0);
+          
+          .item.setting-text {
+            position: absolute;
+            top: 50px;
+            right: 79px;
+            // z-index: -1;
+            line-height: 30px;
+            transform: rotate(270deg);
+            font-weight: 900;
+            font-size: 25px;
+            color: var(--contactColor);
+            letter-spacing: -3px;
+            cursor: default;
+
+            &:hover {
+              animation-name: contact-hover; // 動畫名稱
+              animation-duration: 0.3s; // 持續時間
+              animation-fill-mode: forwards;
+              animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+          
+              @keyframes contact-hover {
+                20% {
+                  right: 110px;
+                  transform: scaleX(2.3) rotate(270deg);
+                }
+                100% {
+                  right: 88px;
+                  transform: rotate(270deg);
+                }
+              }
+            }
+
+          }
+          .list-block {
+            width: calc(100% - 13px);
+            // height: 180%;
+            height: 295px;
+            background: #68c9ff;
+            position: absolute;
+            right: 0px;
+            transform-origin: 50% 0%;
+            transform: scaleY(0);
+            opacity: 0;
+
+            .item.button-email {
+              position: absolute;
+              top: -15px;
+              right: 45px;
+              line-height: 30px;
+              transform: rotate(180deg);
+              font-weight: 900;
+              font-size: 25px;
+              color: var(--bgLobbyColor);
+              letter-spacing: -3px;
+              cursor: pointer;
+
+              &:hover {
+                animation-name: email-hover; // 動畫名稱
+                animation-duration: 0.3s; // 持續時間
+                animation-fill-mode: forwards;
+                animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+
+                @keyframes email-hover {
+                  20% {
+                    top: 15px;
+                    transform: scaleY(2.3) rotate(180deg);
+                  }
+
+                  100% {
+                    top: -6px;
+                    transform: rotate(180deg);
+                  }
+                }
+              }
+            }
+
+            .item.button-facebook {
+              position: absolute;
+              top: 241px;
+              right: 73px;
+              line-height: 14px;
+              transform: rotate(90deg);
+              font-weight: 900;
+              font-size: 20px;
+              color: #68c9ff;
+              letter-spacing: -3px;
+              cursor: pointer;
+
+              &:hover {
+                animation-name: facebook-hover; // 動畫名稱
+                animation-duration: 0.3s; // 持續時間
+                animation-fill-mode: forwards;
+                animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+                @keyframes facebook-hover {
+                  20% {
+                    right: 95px;
+                    transform: scaleX(2.3) rotate(90deg);
+                  }
+                  100% {
+                    right: 80px;
+                    transform: rotate(90deg);
+                  }
+                }
+              }
+            }
+
+            .item.button-linkedin,
+            .item.button-instagram {
+              transform-origin: right 50%;
+            }
+
+            .item.button-linkedin {
+              position: absolute;
+              top: 168px;
+              right: -27px;
+              line-height: 30px;
+              transform-origin: 50% 100%;
+              transform: rotate(270deg);
+              font-weight: 900;
+              font-size: 50px;
+              color: #8b00ff;
+              letter-spacing: -5px;
+              cursor: pointer;
+            }
+            
+            .item.button-instagram {
+              position: absolute;
+              top: 185px;
+              right: -13px;
+              line-height: 30px;
+              transform-origin: 50% 100%;
+              transform: rotate(90deg);
+              font-weight: 900;
+              font-size: 30px;
+              color: #8b00ff;
+              letter-spacing: -3px;
+              cursor: pointer;
+            }
+          }
+
+
+          .header-footer {
+            width: 117px;
+            height: 20px;
+            background: var(--bgLobbyColor);
+            position: absolute;
+            top: -20px;
+            right: 0px;
+          }
+          .footer {
+            width: 189px;
+            height: 14px;
+            background: var(--contactColor);
+            transform: rotate(90deg);
+            position: absolute;
+            top: 88px;
+            right: 28px;
+          }
+        }
+        
+      }
+
+    }
+    
   }
 }
 
 
 .effect2 {
-  --color: #0ebeff;
-
+  --color: #313334;
   margin-top: 100px;
-
 }
 
 .btn-sample02 {

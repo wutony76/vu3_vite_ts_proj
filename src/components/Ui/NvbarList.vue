@@ -26,7 +26,7 @@ const clickListener = (urlName: string) => {
     z-index: 99;
   ">
     <router-link to="/">HOME</router-link> |
-    <router-link to="/lobby" @click="clickListener('reload')"> LOBBY </router-link> |
+    <router-link to="/lobby"> LOBBY </router-link> |
     <router-link to="/snake" @click="clickListener('reload')"> SNAKE </router-link> |
     <router-link to="/splitting">SPLITTING</router-link> |
     <router-link to="/floatingMenu">FLOAT-MENU</router-link>
