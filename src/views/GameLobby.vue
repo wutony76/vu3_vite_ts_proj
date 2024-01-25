@@ -6,6 +6,7 @@ import Lobby from '@/logic/lobby/Lobby'
 
 import { nextTick, onMounted } from 'vue'
 import Splitting from 'splitting'
+import Nvbar from '@/components/Ui/NvbarList.vue'
 
 defineOptions({
   name: "GameLoddy",
@@ -42,6 +43,16 @@ onMounted(() => {
     Animation.addClass('bannerBlock', 'animation-block-right', 700)
     Animation.addClass('contactBlock', 'animation-block-left', 1100)
     Animation.addClass('contactListBlock', 'animation-block-down', 2000)
+    Animation.addClass('buttonFacebook', 'animation-scale-90-show-start', 2500)
+    Animation.addClass('buttonFacebook', 'animation-scale-90-show-end', 3000)
+    setTimeout(() => {
+      Animation.removeClass('buttonFacebook', 'animation-scale-90-show-start')
+    }, 3000)
+
+    // gamelist 
+    Animation.addClass('gameListBlock', 'animation-block-up', 900)
+    Animation.addClass('gameBlock1', 'animation-block-right', 1600)
+
     
     
     // Animation.addClass('logoBox', 'page--alphaIn', 500)
@@ -87,23 +98,42 @@ onMounted(() => {
           <span class="item setting-text"> INTRODUCE </span>
           <div class="footer"></div>
         </div>
-
         <div class="contactBlock">
           <div id="contactBlock" class="content-block">
             <span class="item setting-text"> CONTACT </span>
+            <span id="buttonFacebook" class="item button-facebook"> FACEBOOK </span>
 
             <div id="contactListBlock" class="list-block">
               <span class="item button-email"> EMAIL </span>
-              <span class="item button-facebook"> FACEBOOK </span>
               <span class="item button-linkedin"> LINKEDIN </span>
               <span class="item button-instagram"> INSTAGRAM </span>
+              <span class="item button-line"> LINE </span>
             </div>
 
             <div class="header-footer"></div>
             <div class="footer"></div>
           </div>
         </div>
+      </div>
 
+      <div class="center">
+        <div class="nvbarBlock"> <Nvbar></Nvbar> </div>
+        <div id="gameListBlock" class="gameListBlock">
+          <span class="item setting-text"> GAMELIST 
+            <span class="path00"></span>
+            <span class="path01 title-rotate"></span>
+          </span>
+          <div class="footer"></div>
+        </div>
+        <div id="gameBlock1" class="list-block-1">
+          <span class="item setting-text"> ELECTRONIC </span>
+          <div class="list-game-block">
+            <div class="game-block"></div>
+            <div class="game-block"></div>
+            <div class="game-block"></div>
+            <div class="game-block"></div>
+          </div>
+        </div>
       </div>
     </div>
 
