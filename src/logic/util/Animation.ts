@@ -1,21 +1,35 @@
 const ANIMATIONS = {
+  // 設定節點CSS-CLASS
   addClass: (idName:string, className: string, timeout:number) => {
     setTimeout(() => {
       const nd = document.getElementById(idName)
-      // console.log('nd ', nd)
-      if (nd !== null) {
-        nd.classList.add(className)
-        // console.log('nd ', nd.classList)
-        // 執行完移除
-        // switch (className) {
-        //   case 'button-rotate':
-        //     if (nd !== null) {
-        //       setTimeout(() => {
-        //         nd.classList.remove('button-rotate')
-        //       }, 1100)
-        //     }
-        //     break
-        // }
+      if (nd !== null) nd.classList.add(className)
+    }, timeout)
+  },
+
+  // 設定子節點CSS-CLASS
+  addSubClass: (parentIdName:string, className: string, timeout:number) => {
+    console.log('parentIdName ', parentIdName)
+    setTimeout(() => {
+      const nd = document.getElementById(parentIdName)
+      const items = nd?.getElementsByClassName('game-block')
+      const len = items? items.length : 0
+      for (let i=0; i<len; i++ ) {
+        const subNd = items[i]
+        subNd.classList.add(className) 
+      }
+    }, timeout)
+  },
+
+  removeSubClass: (parentIdName:string, className: string, timeout:number) => {
+    console.log('parentIdName ', parentIdName)
+    setTimeout(() => {
+      const nd = document.getElementById(parentIdName)
+      const items = nd?.getElementsByClassName('game-block')
+      const len = items? items.length : 0
+      for (let i=0; i<len; i++ ) {
+        const subNd = items[i]
+        subNd.classList.remove(className) 
       }
     }, timeout)
   },

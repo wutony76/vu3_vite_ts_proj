@@ -43,13 +43,17 @@ export const VIEWS = {
   RESULT:'RESULT',
   END:'END'
 }
-// export const GAME = {
-//   NONE: 'none',
-//   READY: 'ready',
-//   RUN: 'run',
-//   STOP: 'stop',
-//   END: 'end',
-// }
+export const GAME = {
+  ELECTRONIC : {
+    SNAKE: 'electronic-snake',
+    RACING: 'electronic-racing',
+  }
+}
+export const PATH = {
+  LOBBY: '/lobby',
+  SNAKE: '/snake',
+  RACING: '/racing'
+}
 export const UI = {
   CLICKLEFT: 'click-left',
   CLICKRIGHT: 'click-right',
