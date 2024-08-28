@@ -19,15 +19,22 @@
   --bannerColor: #f6ae78;
   background: var(--bgLobbyColor);
 
+  .lobbyContainer {
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+  }
+
   .main .center .list-block-1 .list-game-block .game-block.alpha-1 {
     transform: scale(1);
     opacity: 1;
   }
 
-
   .nvbar {
     height: 70px;
     background: var(--nvbarColorBar);
+    transform-origin: 50% 0%;
+    // transform: translateY(0px);
 
     .nvbarContainer {
       width: 100%;

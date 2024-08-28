@@ -88,7 +88,7 @@ const changePath = (target: string) => {
     <!-- <div id="loadPage" class="loadPage"></div> -->
     <div id="loadPage" class="loadPage"> </div>
 
-    <div id="lobbyContainer" style="overflow: hidden;">
+    <div id="lobbyContainer" class="lobbyContainer">
       <div id="nvbarBlock" class="nvbar">
         <div class="nvbarContainer">
           <div class="content-block">

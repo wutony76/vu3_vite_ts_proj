@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import { onBeforeUnmount, onMounted, reactive, watch } from 'vue'
   import Splitting from 'splitting'
-  import Game from '@/logic/snake/Game'
+  // import Game from '@/logic/racing/Game'
+  import Game from '@/logic/racing/Game'
   import Effects from '@/logic/effects/SnakeEffects'
   import { GAMESTATUS } from '@/logic/snake/Parameter'
   import { ACTIONS, VIEWS } from '@/logic/util/Parameter'
@@ -375,13 +376,15 @@
         simulationClick('gameRightRanking', 4500)
         
         selfGame = new Game(state)
-        selfGame.setCallback(() => {
-          // 設定.RESULT STATUS
-          state.gameStatus = GAMESTATUS.RESULT
-          setTimeout(() => {
-            changeGameStatus( state.gameStatus )
-          }, 1000)
-        })
+
+        
+        // selfGame.setCallback(() => {
+        //   // 設定.RESULT STATUS
+        //   state.gameStatus = GAMESTATUS.RESULT
+        //   setTimeout(() => {
+        //     changeGameStatus( state.gameStatus )
+        //   }, 1000)
+        // })
         break
       // 遊戲結果
       case GAMESTATUS.RESULT:
@@ -841,7 +844,7 @@
       <br/> showStatus = {{ state.showStatus }}
       <br/> GAMEPAUSE = {{ VIEWS.PAUSE }} -->
 
-      <div id="gameSnake" class="gameSnake-container">
+      <div id="gameRacing" class="gameRacing-container">
         <div class="game-center">
           <div class="gameHeader">
             <!-- left-block -->
@@ -995,10 +998,17 @@
             <!-- 设置游戏的舞台 -->
             <div id="stage">
 
-              <!-- 设置蛇 -->
-              <div id="snake">
+              <!-- 设置車 -->
+              <div id="car">
                 <!-- snake内部的div 表示蛇的各部分-->
-                <div class="head"></div>
+                <div class="head">
+                  <div></div>
+                </div>
+                <div class="body">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
 
               <!-- 设置食物 -->
@@ -1036,6 +1046,6 @@
 
 <style lang="scss">
   @import "../assets/css/game/gameBase.scss";
-  @import "../assets/css/gameSnake/snakeGame.scss";
+  @import "../assets/css/gameRacing/racingGame.scss";
   @import "../assets/css/game/animations.scss";
 </style>
