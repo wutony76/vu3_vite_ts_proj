@@ -47,12 +47,22 @@ export const GAME = {
   ELECTRONIC : {
     SNAKE: 'electronic-snake',
     RACING: 'electronic-racing',
+    LOTTERY: 'electronic-lottery',
   }
+}
+export const STATIC= {
+  SPACE: '',
 }
 export const PATH = {
   LOBBY: '/lobby',
   SNAKE: '/snake',
   RACING: '/racing'
+}
+export const PATH_NAME = {
+  LOBBY: 'Lobby',
+  SNAKE: 'Snake',
+  RACING: 'Racing',
+  LOTTERY: 'Lottery'
 }
 export const UI = {
   CLICKLEFT: 'click-left',

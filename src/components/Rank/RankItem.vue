@@ -12,7 +12,6 @@
   onMounted(() => {
     Splitting()
   })
-
 </script>
 
 <template>

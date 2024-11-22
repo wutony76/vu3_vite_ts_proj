@@ -11,7 +11,7 @@
   import ProgressBar from '@/components/Ui/ProgressBar.vue'
 
   defineOptions({
-    name: "GameSnake",
+    name: "GameRacing",
     inheritAttrs: false,
   })
   const router = useRouter()
@@ -1000,7 +1000,6 @@
 
               <!-- 设置車 -->
               <div id="car">
-                <!-- snake内部的div 表示蛇的各部分-->
                 <div class="head">
                   <div></div>
                 </div>

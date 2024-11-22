@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 import Splitting from 'splitting'
 import Animation from '@/logic/util/Animation'
 import ArtsEffect from '@/logic/util/ArtsEffect'
-import { ACTIONS, GAME, PATH } from '@/logic/util/Parameter'
+import { ACTIONS, GAME, STATIC, PATH_NAME } from '@/logic/util/Parameter'
 import Lobby from '@/logic/lobby/Lobby'
 import Nvbar from '@/components/Ui/NvbarList.vue'
 const router = useRouter()
@@ -22,12 +22,14 @@ const clickListener = (actions: string) => {
       break
 
     case GAME.ELECTRONIC.SNAKE:
-      changePath (PATH.SNAKE)
+      changePath (STATIC.SPACE, PATH_NAME.SNAKE)
       break
     case GAME.ELECTRONIC.RACING:
-      changePath (PATH.RACING)
+      changePath (STATIC.SPACE, PATH_NAME.RACING)
       break
-
+    case GAME.ELECTRONIC.LOTTERY:
+      changePath (STATIC.SPACE, PATH_NAME.LOTTERY)
+      break
   }
 }
 
@@ -73,10 +75,11 @@ onMounted(() => {
   })
 })
 
-const changePath = (target: string) => {
+const changePath = (_target: string, _name: string) => {
   Animation.addClass('lobbyContainer', 'animation-load-out', 10)
   setTimeout(() => {
-    router.replace({ path: target })
+    if (_target) router.replace({ path: _target })
+    if (_name) router.replace({ name: _name })
     setTimeout(() => { window.location.reload() }, 10)
   }, 1300)
 }

@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeComponent from '@/views/Home.vue'
-import GameSnake from '@/views/GameSnake.vue'
-import GameRacing from '@/views/GameRacing.vue'
-import GameLottery from '@/views/GameLottery.vue'
+// import GameSnake from '@/views/GameSnake.vue'
+// import GameRacing from '@/views/GameRacing.vue'
+
 import GameLobby from '@/views/GameLobby.vue'
 import SplittingView from '@/views/SplittingTest.vue'
 import FloatingMenuView from '@/views/FloatingMenu.vue'
@@ -24,10 +24,10 @@ function getAllRoutes(routes:any):void {
 
 const routes: any = [
   { path: '/', name: 'Home', component: HomeComponent },
-  { path: '/lobby', name: 'GameLobby', component: GameLobby },
-  { path: '/snake', name: 'GameSnake', component: GameSnake }, // 貪吃蛇
-  { path: '/racing', name: 'GameRacing', component: GameRacing },
-  { path: '/lottery', name: 'GameLottery', component: GameLottery },
+  { path: '/lobby', name: 'Lobby', component: GameLobby },
+  // { path: '/snake', name: 'GameSnake', component: GameSnake }, // 貪吃蛇
+  // { path: '/racing', name: 'GameRacing', component: GameRacing },
+  // { path: '/lottery', name: 'GameLottery', component: GameLottery },
   { path: '/splitting', name: 'SplittingPage', component: SplittingView },
   { path: '/floatingMenu', name: 'FloatingMenu', component: FloatingMenuView },
 ]

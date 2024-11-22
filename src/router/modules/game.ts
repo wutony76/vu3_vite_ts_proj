@@ -1,18 +1,15 @@
+import GameLottery from '@/views/GameLottery.vue'
+import GameSnake from '@/views/GameSnake.vue'
+import GameRacing from '@/views/GameRacing.vue'
 
 const SubRoutes = {
   sort: 13,
   path: '/game',
-  name: 'game',
+  name: 'Game',
   children: [
-    {
-      path: 'lottery',
-      // hidden: true,
-      meta: {
-        // title: '彩种列表',
-      },
-      component: () => import('@/views/GameLottery.vue'),
-      name: 'Lottery',
-    },
+    { name: 'Snake', path: 'snake', meta: {}, component: GameSnake },
+    { name: 'Racing', path: 'racing', meta: {}, component: GameRacing },
+    { name: 'Lottery', path: 'lottery', meta: {}, component: GameLottery },
   ]
 }
 export default SubRoutes
