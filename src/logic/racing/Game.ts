@@ -28,7 +28,7 @@ export default class Game {
     this.status = changeStatus 
   }
   logPrint (msg:any) {
-    console.log('Racing-Game ', msg)
+    console.log('Racing-Game~ ', msg)
   }
   init () {
     console.log('init.raceing')
@@ -51,21 +51,21 @@ export default class Game {
   run () {
     this.logPrint(`run, ${this.status} --${this.direction}`)
 
-    // CAR位置更新 x, y
-    let x = this.car.x
-    let y = this.car.y
-    // this.logPrint(` ${x}, ${y}`)
-    let newXY = this.handleReturnXY(x, y)
-    x = newXY[0] 
-    y = newXY[1] 
-
-    // 物件獲取.
-
     // KEYBOARD方向
     // const clickKey = this.control.event
     // if (clickKey !== null) this.direction = clickKey
     // 刷新外部CONTROL資訊
     this.state.controlStatus = this.returnkeybordKeyToDirection(this.direction)
+
+    // CAR位置更新 x, y
+    let x = this.car.x
+    let y = this.car.y
+    let newXY = this.handleReturnXY(x, y)
+    x = newXY[0] 
+    y = newXY[1] 
+    this.logPrint(`ori:(${x},${y})  new:(${newXY[0]},${newXY[1]})`)
+
+    // 物件獲取.
     
     try {
       this.car.x = x 
@@ -76,8 +76,8 @@ export default class Game {
       if (this.callback) this.callback()
     }
 
-    // this.isLive && this.status === GAMESTATUS.PLAYING && setTimeout(this.run.bind(this), this.returnTimeout())
-    setTimeout(this.run.bind(this), this.returnTimeout())
+    this.isLive && this.status === GAMESTATUS.PLAYING && setTimeout(this.run.bind(this), this.returnTimeout())
+    // setTimeout(this.run.bind(this), this.returnTimeout())
   }
   handleReturnXY (x: number, y: number) {
     let _x = x
