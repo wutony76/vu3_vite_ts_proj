@@ -515,7 +515,7 @@
 </script>
 
 <template>
-  <div class="game-base game-snake animations">
+  <div class="game-base game-racing animations">
     <div id="container" class="game-container">
 
       <!-- WAITING狀態  -->
@@ -948,7 +948,7 @@
               <div id="gameDetailsBlock" class="details-block page--hide">
                 <div class="content">
                   <div id="gameDetailsCont1" class="block headline self" data-splitting>
-                    In the game, the player controls the snake.
+                    In the game, the player controls the car.
                   </div>
                   <div id="gameDetailsCont2" class="block eadline self" data-splitting>
                     which will keep moving forward, picking up objects it touches along the way.
@@ -982,7 +982,7 @@
           </div>
 
           <div class="title-block">
-            <h1 id="gameTitleAnim" class="headline self" data-splitting> SNAKE </h1>
+            <h1 id="gameTitleAnim" class="headline self" data-splitting> RACING </h1>
           </div>
 
           <div class="status-block">
@@ -1035,7 +1035,7 @@
             <i id="scanLight" class="scan"></i>
           </div>
 
-          <div class="footer"> SNAKE.GAME @ 2023.12 </div>
+          <div class="footer"> RACING.GAME @ 2024.11 </div>
         </div>
       </div>
 

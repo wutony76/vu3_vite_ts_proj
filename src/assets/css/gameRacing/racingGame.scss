@@ -1,4 +1,4 @@
-.game-snake {
+.game-racing {
   /* ---设置主窗口的样式 */
   #main {
     width: 360px;
@@ -36,6 +36,7 @@
         left: 135px;
 
         .head {
+          width: 10px;
           top: 0px;
           left: 10px;
           position: relative;

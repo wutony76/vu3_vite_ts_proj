@@ -1,4 +1,4 @@
-import {EVENTS} from '@/logic/snake/Parameter'
+import {EVENTS} from '@/logic/racing/Parameter'
 
 export default class Control {
   parentGame: any
@@ -13,7 +13,7 @@ export default class Control {
     document.addEventListener('keydown', this.keydownHandler.bind(this))
   }
   keydownHandler(event:KeyboardEvent) {
-    // console.log('keybord >> ', event.key)
+    console.log('car.keybord >> ', event.key)
     switch (event.key) {
       case EVENTS.UP:
       case EVENTS.DOWN:
