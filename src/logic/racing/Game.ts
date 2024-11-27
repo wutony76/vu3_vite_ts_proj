@@ -1,11 +1,13 @@
 import Control from '@/logic/racing/Control'
 import Car from '@/logic/racing/Car'
+import Wall from '@/logic/racing/Wall'
 // import Food from '@/logic/snake/Food'
 import {EVENTS, GAMESTATUS} from '@/logic/racing/Parameter'
 import { ACTIONS } from '@/logic/util/Parameter'
 
 export default class Game {
   car:Car
+  wall: Wall
   // food:Food
   control:Control
   direction:string|null = null
@@ -17,6 +19,7 @@ export default class Game {
 
   constructor (state: any) {
     // this.food = new Food()
+    this.wall = new Wall(this)
     this.car = new Car(this)
     this.control = new Control(this)
     this.isLive = false
@@ -50,23 +53,20 @@ export default class Game {
 
   run () {
     this.logPrint(`run, ${this.status} --${this.direction}`)
+    this.wall.move()
 
-    // KEYBOARD方向
-    // const clickKey = this.control.event
-    // if (clickKey !== null) this.direction = clickKey
     // 刷新外部CONTROL資訊
     this.state.controlStatus = this.returnkeybordKeyToDirection(this.direction)
-
     // CAR位置更新 x, y
     let x = this.car.x
     let y = this.car.y
     let newXY = this.handleReturnXY(x, y)
     x = newXY[0] 
     y = newXY[1] 
-    this.logPrint(`ori:(${x},${y})  new:(${newXY[0]},${newXY[1]})`)
-
+    // this.logPrint(`ori:(${x},${y})  new:(${newXY[0]},${newXY[1]})`)
     // 物件獲取.
     
+    // CAR設定新的位置. THROW:遊戲失敗 
     try {
       this.car.x = x 
       this.car.y = y 
@@ -75,9 +75,7 @@ export default class Game {
       this.isLive = false
       if (this.callback) this.callback()
     }
-
     this.isLive && this.status === GAMESTATUS.PLAYING && setTimeout(this.run.bind(this), this.returnTimeout())
-    // setTimeout(this.run.bind(this), this.returnTimeout())
   }
   handleReturnXY (x: number, y: number) {
     let _x = x
@@ -100,7 +98,7 @@ export default class Game {
     return [_x, _y]
   }
   returnTimeout () {
-    const defTimeout = 300
+    const defTimeout = 3000
     let timeOut = defTimeout
     return timeOut
     // switch (this.state.level) {

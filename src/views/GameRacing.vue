@@ -72,7 +72,6 @@
     }, 10);
   }
   var selfGame: Game|null = null
-
   // CLICKLISTENER.事件
   const clickListener = (actions:string) => {
     console.log('ttt.CLICK', actions)
@@ -507,6 +506,9 @@
   })
   onMounted (() => {
     Splitting()
+
+    //test 123
+  selfGame = new Game(state)
   }) 
   onBeforeUnmount(() => {
     // console.log('ttt.onBeforeUnmount')
@@ -997,7 +999,41 @@
             <div class="mainBackground"></div>
             <!-- 设置游戏的舞台 -->
             <div id="stage">
-
+              <!-- 设置WALL -->
+              <div id="wall">
+                <div class="row">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div class="r"></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
               <!-- 设置車 -->
               <div id="car">
                 <div class="head">
@@ -1009,7 +1045,6 @@
                   <div></div>
                 </div>
               </div>
-
               <!-- 设置食物 -->
               <div id="food">
                 <!-- 设置四个小div来设置食物的样式 -->

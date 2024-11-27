@@ -29,6 +29,25 @@
       /* //开启相对定位 */
       position: relative;
 
+      /* 设置牆 */
+      #wall {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+        .row {
+          display: flex;
+          &>div {
+            width: 10px;
+            height: 10px;
+            background-color: rgb(165, 95, 10);
+            border: 1px solid #b7d4a8;
+          }
+          &>div.r {
+            background-color: #b7d4a8;
+          }
+        }
+      }
+
       /* 设置CAR */
       #car {
         position: absolute;
