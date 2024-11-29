@@ -81,6 +81,7 @@ export default class Wall{
     if (startRoadX < 0) startRoadX = this.startCarX 
     let startRoadLen = this.startRoadLen // GET紀錄ROW位置
     if (startRoadLen < 0) startRoadLen = roadLen
+    let endRoadX = startRoadX + startRoadLen 
 
     // 取road可以的位置
     let canStartPos = -1
@@ -119,9 +120,22 @@ export default class Wall{
 
     console.log('CANGETPOS-2.取.', `pos:${_randomRowPos}, _startRoad:${_startRoad}, roadLen:${roadLen}`)
 
+    // startRoadX
+    // endRoadX
+    console.log('CANGETPOS-3.', `stI:${startRoadX}, endI:${endRoadX}`)
+    console.log('CANGETPOS-4.', `stI:${_startRoad}, endI:${_endRoad}`)
+    // -處理ROAD最後位置 
+    if (_startRoad > (endRoadX-carWidth)) {
+      _startRoad = endRoadX-carWidth 
+      _endRoad = _startRoad+roadLen
+    } else if (_endRoad < (startRoadX + carWidth)) {
+      _endRoad = startRoadX + carWidth
+      _startRoad = _endRoad - roadLen 
+    } 
+    console.log('CANGETPOS-5.', `stI:${_startRoad}, endI:${_endRoad}`)
+
     this.startCarX = _startRoad 
     this.startRoadLen = roadLen 
-    console.log('CANGETPOS-3.', `stI:${_startRoad}, endI:${_endRoad}`)
 
     // init
     let _arr = []
@@ -129,7 +143,7 @@ export default class Wall{
       if (i >= _startRoad && i <= _endRoad) _arr.push(1)
       else _arr.push(0)
     }
-    console.log('_arr', _arr)
+    // console.log('_arr', _arr)
     return _arr
   }
 }
