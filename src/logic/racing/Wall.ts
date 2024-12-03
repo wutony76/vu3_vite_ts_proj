@@ -16,9 +16,10 @@ export default class Wall{
   // startRoadLen = -1 // 紀錄ROW寬度
   // 紀錄ROW位置- 需要有足夠的空間讓CAR過 
   recordPos = [
-    {startX: -1, len: -1},
-    {startX: -1, len: -1},
+    {startX: this.startCarX, len: 3},
+    {startX: this.startCarX, len: 3},
   ]
+  wallInfoArr = {} 
   counter = 0
 
   constructor (game:any) {
@@ -32,8 +33,8 @@ export default class Wall{
     let _v = point.replace('px', '') 
     return isNaN(+_v) ? 0 :+_v
   }
-  async move () {
-    console.log('WALL.MOVE.')
+  move () {
+    console.log(`WALL.MOVE. ${this.counter}`)
     /**
     // WALL移動
     let _y = this.handleGetPoint (this.wall.style.top)
@@ -71,10 +72,11 @@ export default class Wall{
   }
   // 產生.ROW一列牆壁
   _proRow () {
+    let _randomArr=  this._proWallArr()
     let rowNode = document.createElement("div")
     rowNode.classList.add("row")
-    let _randomArr=  this._proWallArr()
-    _randomArr.forEach((status) => {
+    rowNode.setAttribute("_id", _randomArr.id.toString())
+    _randomArr.arr.forEach((status) => {
       rowNode.insertAdjacentHTML("beforeend", this._getGridHtml(status))
     })
     return rowNode
@@ -87,73 +89,90 @@ export default class Wall{
 
     let wallWidth = 2
     let carWidth = 3
-    let roadLen = Tools.getRandom(6,10) // 取road寬度
-    let startRoadX = this.recordPos[_getIndex].startX // GET紀錄ROW位置.startRoadX
+    let roadLen = Tools.getRandom(4, 8) // 取road寬度
+
+     // GET紀錄ROW位置.startRoadX
+    let startRoadX = this.recordPos[_getIndex].startX
     if (startRoadX < 0) startRoadX = this.startCarX 
-    let startRoadLen = this.recordPos[_getIndex].len // GET紀錄ROW位置
-    if (startRoadLen < 0) startRoadLen = roadLen
+     // GET紀錄ROW位置
+    let startRoadLen = this.recordPos[_getIndex].len
+    if (startRoadLen < 0) {
+      if (_getIndex === 1) startRoadLen = roadLen
+      else if (_getIndex === 0) startRoadLen = this.recordPos[1].len
+    }
     let endRoadX = startRoadX + startRoadLen 
     // 取road可以的位置
     let canStartPos = -1
     let canEndPos = -1
 
-    // 開始位置 = 上列的位置 -上列長度 - 車寬
-    canStartPos = startRoadX - startRoadLen - carWidth
-    // 結束位置 = 上列的位置 + 這列長度 
-    canEndPos = startRoadX + roadLen 
+    console.log('CANGETPOS-1. args', `--startRoadX:${startRoadX}, --startRoadLen:${startRoadLen}, --carWidth:${carWidth}` )
+    // 開始位置=上列的位置-這列長度+車寬
+    canStartPos = startRoadX - roadLen + carWidth
+    // 結束位置=上列的位置+上列長度-車寬 
+    canEndPos = startRoadX + startRoadLen-carWidth
 
-    // CALC計算位置, 超出限制 
+    console.log('CANGETPOS-1. step1', `--st:${canStartPos}, --ed:${canEndPos}, --len:${roadLen}`, canEndPos-canStartPos)
+    // CALC計算位置, 超出限制canStartPos, canEndPos 
     if (canStartPos < wallWidth) {
       canStartPos = wallWidth 
-      canEndPos = canStartPos + roadLen 
-      console.log('CALC-1.', `R.st:${canStartPos}, ed:${canEndPos}`)
-
-    } else if (canStartPos > 30 - roadLen - wallWidth) {
-      canStartPos = 30 - roadLen - wallWidth 
-      canEndPos = canStartPos + roadLen 
-      console.log('CALC-2.', `R.st:${canStartPos}, ed:${canEndPos}`)
-
-    } else if (canEndPos > 30 - roadLen - wallWidth) {
-      canEndPos = 30 - roadLen - wallWidth
-      canStartPos = canEndPos - roadLen 
-      console.log('CALC-3.', `R.st:${canStartPos}, ed:${canEndPos}`)
-
+      // console.log('CANGETPOS-1. CALC-1.', `R.st:${canStartPos}, ed:${canEndPos}`)
+    } else if (canStartPos > 29 - roadLen - carWidth - wallWidth) {
+      canStartPos = 29 - roadLen - carWidth - wallWidth 
+      if (canEndPos - canStartPos <= 3) canEndPos = canStartPos + roadLen 
+      // console.log('CANGETPOS-1. CALC-2.', `R.st:${canStartPos}, ed:${canEndPos}`)
+    } else if (canEndPos + roadLen  > 29 - wallWidth) {
+      canEndPos = 29 - roadLen - wallWidth
+      if (canEndPos-canStartPos <= 3) canStartPos = canEndPos - roadLen 
+      // console.log('CANGETPOS-1. CALC-3.', `R.st:${canStartPos}, ed:${canEndPos}`)
     } else if (canEndPos < wallWidth + roadLen) {
       canEndPos = wallWidth + roadLen 
-      canStartPos = canEndPos - roadLen 
-      console.log('CALC-4.', `R.st:${canStartPos}, ed:${canEndPos}`)
+      if (canEndPos-canStartPos <= 3) canStartPos = canEndPos - roadLen 
+      // console.log('CANGETPOS-1. CALC-4.', `R.st:${canStartPos}, ed:${canEndPos}`)
     }
+    console.log('CANGETPOS-1.可隨機範圍', `R.len:${roadLen}, st:${canStartPos}, ed:${canEndPos}`)
 
-    console.log('CANGETPOS-1.', `R.st:${canStartPos}, ed:${canEndPos}`)
     let _randomRowPos = Tools.getRandom(canStartPos, canEndPos)
-    let _startRoad = _randomRowPos-1 
+    let _startRoad = _randomRowPos
     let _endRoad = _randomRowPos+roadLen
+    console.log('CANGETPOS-2.取隨機位置.', `_st:${_startRoad}, _ed:${_endRoad} -- roadLen: ${roadLen}`)
 
-    console.log('CANGETPOS-2.取.', `pos:${_randomRowPos}, _startRoad:${_startRoad}, roadLen:${roadLen}`)
-
-    // startRoadX
-    // endRoadX
+    // startRoadX, endRoadX
     console.log('CANGETPOS-3.', `stI:${startRoadX}, endI:${endRoadX}`)
-    console.log('CANGETPOS-4.', `stI:${_startRoad}, endI:${_endRoad}`)
+    this.recordPos.forEach((_posInfo) => {
+      const _gStX = _posInfo.startX
+      const _gEdX = _gStX + _posInfo.len 
+      // -處理ROAD最後位置 
+      if (_startRoad > (_gEdX - carWidth - 1)) {
+        _startRoad = _gEdX - carWidth - 1 
+        _endRoad = _startRoad + roadLen
+      } else if (_endRoad < _gStX + carWidth) {
+        _endRoad = _gStX + carWidth
+        _startRoad = _endRoad - roadLen
+      } 
+    })
     // -處理ROAD最後位置 
-    if (_startRoad > (endRoadX-carWidth)) {
-      _startRoad = endRoadX-carWidth 
-      _endRoad = _startRoad+roadLen
-    } else if (_endRoad < (startRoadX + carWidth)) {
-      _endRoad = startRoadX + carWidth
-      _startRoad = _endRoad - roadLen 
-    } 
+    // if (_startRoad > (endRoadX - carWidth - 1)) {
+    //   _startRoad = endRoadX - carWidth - 1 
+    //   _endRoad = _startRoad + roadLen
+    // } else if (_endRoad < startRoadX + carWidth) {
+    //   _endRoad = startRoadX + carWidth
+    //   _startRoad = _endRoad - roadLen
+    // } 
+    console.log('CANGETPOS-END.可隨機範圍 ------------------------')
 
-    console.log('CANGETPOS-5.', `stI:${_startRoad}, endI:${_endRoad}`)
+    console.log('CANGETPOS-4.', `stI:${_startRoad}, endI:${_endRoad}`)
     this.recordPos[_getIndex].startX = _startRoad 
     this.recordPos[_getIndex].len = roadLen 
 
-    // init
+    // --INIT
     let _arr = []
     for(let i = 0; i < 30; i++) {
-      if (i >= _startRoad && i <= _endRoad) _arr.push(1)
+      if (i >= _startRoad && i < _endRoad) _arr.push(1)
       else _arr.push(0)
     }
-    return _arr
+    
+    console.log('CANGETPOS-5.', `_arr: ${_arr}`)
+    this.wallInfoArr[this.counter] = _arr
+    return {arr:_arr, id: this.counter}  
   }
 }

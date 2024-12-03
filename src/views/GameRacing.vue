@@ -506,9 +506,8 @@
   })
   onMounted (() => {
     Splitting()
-
-    //test 123
-  selfGame = new Game(state)
+    // test 123
+    // selfGame = new Game(state)
   }) 
   onBeforeUnmount(() => {
     // console.log('ttt.onBeforeUnmount')

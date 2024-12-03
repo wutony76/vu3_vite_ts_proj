@@ -4,6 +4,7 @@ import Wall from '@/logic/racing/Wall'
 // import Food from '@/logic/snake/Food'
 import {EVENTS, GAMESTATUS} from '@/logic/racing/Parameter'
 import { ACTIONS } from '@/logic/util/Parameter'
+import Tools from '@/logic/util/Tools' 
 
 export default class Game {
   car:Car
@@ -98,7 +99,7 @@ export default class Game {
     return [_x, _y]
   }
   returnTimeout () {
-    const defTimeout = 3000
+    const defTimeout = 300 
     let timeOut = defTimeout
     return timeOut
     // switch (this.state.level) {
