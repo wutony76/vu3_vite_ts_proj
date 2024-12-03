@@ -11,8 +11,15 @@ export default class Wall{
   parentGame: any
   distance = 10 // number
   startCarX = 14 // 初始Car位置
-  startRoadX = -1 // 紀錄ROW位置
-  startRoadLen = -1 // 紀錄ROW寬度
+
+  // startRoadX = -1 // 紀錄ROW位置
+  // startRoadLen = -1 // 紀錄ROW寬度
+  // 紀錄ROW位置- 需要有足夠的空間讓CAR過 
+  recordPos = [
+    {startX: -1, len: -1},
+    {startX: -1, len: -1},
+  ]
+  counter = 0
 
   constructor (game:any) {
     this.parentGame = game
@@ -74,18 +81,22 @@ export default class Wall{
   }
   // 隨機產生.ROW一列牆壁資料
   _proWallArr () {
+    this.counter ++
+    const _getIndex = this.counter%2 
+    console.log('-MOD.', _getIndex)
+
     let wallWidth = 2
     let carWidth = 3
     let roadLen = Tools.getRandom(6,10) // 取road寬度
-    let startRoadX = this.startCarX // GET紀錄ROW位置
+    let startRoadX = this.recordPos[_getIndex].startX // GET紀錄ROW位置.startRoadX
     if (startRoadX < 0) startRoadX = this.startCarX 
-    let startRoadLen = this.startRoadLen // GET紀錄ROW位置
+    let startRoadLen = this.recordPos[_getIndex].len // GET紀錄ROW位置
     if (startRoadLen < 0) startRoadLen = roadLen
     let endRoadX = startRoadX + startRoadLen 
-
     // 取road可以的位置
     let canStartPos = -1
     let canEndPos = -1
+
     // 開始位置 = 上列的位置 -上列長度 - 車寬
     canStartPos = startRoadX - startRoadLen - carWidth
     // 結束位置 = 上列的位置 + 這列長度 
@@ -132,10 +143,10 @@ export default class Wall{
       _endRoad = startRoadX + carWidth
       _startRoad = _endRoad - roadLen 
     } 
-    console.log('CANGETPOS-5.', `stI:${_startRoad}, endI:${_endRoad}`)
 
-    this.startCarX = _startRoad 
-    this.startRoadLen = roadLen 
+    console.log('CANGETPOS-5.', `stI:${_startRoad}, endI:${_endRoad}`)
+    this.recordPos[_getIndex].startX = _startRoad 
+    this.recordPos[_getIndex].len = roadLen 
 
     // init
     let _arr = []
@@ -143,7 +154,6 @@ export default class Wall{
       if (i >= _startRoad && i <= _endRoad) _arr.push(1)
       else _arr.push(0)
     }
-    // console.log('_arr', _arr)
     return _arr
   }
 }
